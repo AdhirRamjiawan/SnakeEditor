@@ -49,15 +49,22 @@ int main()
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            snakeHorizontalDirection = -1;
-            snakeHorizontalSpeed = snakeBlockSize;
-            snakeVerticalSpeed = 0;
+            if (snakeHorizontalSpeed == 0)
+            {
+                snakeHorizontalDirection = -1;
+                snakeHorizontalSpeed = snakeBlockSize;
+                snakeVerticalSpeed = 0;
+            }
+            
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            snakeHorizontalDirection = 1;
-            snakeHorizontalSpeed = snakeBlockSize;
-            snakeVerticalSpeed = 0;
+            if (snakeHorizontalSpeed == 0)
+            {
+                snakeHorizontalDirection = 1;
+                snakeHorizontalSpeed = snakeBlockSize;
+                snakeVerticalSpeed = 0;
+            }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
