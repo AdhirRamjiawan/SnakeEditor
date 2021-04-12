@@ -16,9 +16,33 @@ float snakeBlockSize = 15.f;
 const int gameWidth = 520;
 const int gameHeight = 400;
 
+bool displayGridEnabled = true;
+sf::RenderWindow window(sf::VideoMode(gameWidth, gameHeight), "Snake Game!");
+
+void displayGrid()
+{
+    sf::Color lineColour(100, 100, 100, 255);
+
+    for (int i = 0; i < gameWidth; i += snakeBlockSize)
+    {
+        sf::RectangleShape line(sf::Vector2f(1, gameHeight));
+        line.setPosition(sf::Vector2f(i, 0));
+        line.setFillColor(lineColour);
+        window.draw(line);
+    }
+
+    for (int i = 0; i < gameHeight; i += snakeBlockSize)
+    {
+        sf::RectangleShape line(sf::Vector2f(gameWidth, 1));
+        line.setPosition(sf::Vector2f(0, i));
+        line.setFillColor(lineColour);
+        window.draw(line);
+    }
+}
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(gameWidth, gameHeight), "Snake Game!");
+    
     sf::Clock clock;
     sf::RectangleShape snakeHead(sf::Vector2f(snakeBlockSize, snakeBlockSize));
     snakeHead.setFillColor(sf::Color::Green);
@@ -34,6 +58,11 @@ int main()
     float snakeMoveWaitCount = 0;
 
     bool snakeCollided = false;
+
+    sf::RectangleShape target(sf::Vector2f(snakeBlockSize, snakeBlockSize));
+
+    target.setPosition(sf::Vector2f(10 * snakeBlockSize, 10 * snakeBlockSize));
+    target.setFillColor(sf::Color::Red);
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -86,6 +115,11 @@ int main()
                 snakeVerticalSpeed = snakeBlockSize;
             }
         }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
+        {
+            displayGridEnabled = !displayGridEnabled;
+            cout << "Toggled grid display" << endl;
+        }
 
         float updateDelta = deltaTime.asSeconds();
 
@@ -111,12 +145,19 @@ int main()
                 snakeBlocks.erase(snakeBlocks.begin(), snakeBlocks.begin() + 1);
             }
 
+            if (displayGridEnabled)
+            {
+                displayGrid();
+            }
+
             for (auto block : snakeBlocks)
             {
                 window.draw(block);
             }
 
             window.draw(snakeHead);
+
+            window.draw(target);
 
             // end the current frame
             window.display();
