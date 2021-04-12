@@ -33,6 +33,8 @@ int main()
     const float snakeMoveWait = 10.f;
     float snakeMoveWaitCount = 0;
 
+    bool snakeCollided = false;
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -68,15 +70,21 @@ int main()
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            snakeVerticalDirection = -1;
-            snakeHorizontalSpeed = 0;
-            snakeVerticalSpeed = snakeBlockSize;
+            if (snakeVerticalSpeed == 0)
+            {
+                snakeVerticalDirection = -1;
+                snakeHorizontalSpeed = 0;
+                snakeVerticalSpeed = snakeBlockSize;
+            }
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            snakeVerticalDirection = 1;
-            snakeHorizontalSpeed = 0;
-            snakeVerticalSpeed = snakeBlockSize;
+            if (snakeVerticalSpeed == 0)
+            {
+                snakeVerticalDirection = 1;
+                snakeHorizontalSpeed = 0;
+                snakeVerticalSpeed = snakeBlockSize;
+            }
         }
 
         float updateDelta = deltaTime.asSeconds();
@@ -108,14 +116,17 @@ int main()
                 window.draw(block);
             }
 
-
             window.draw(snakeHead);
-
 
             // end the current frame
             window.display();
 
             snakeMoveWaitCount = 0;
+
+            if (snakeCollided)
+            {
+                cout << "snake collided!" << endl;
+            }
         }
         
         snakeMoveWaitCount += 0.0005f;
