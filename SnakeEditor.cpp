@@ -10,7 +10,7 @@
 using namespace std;
 
 float snakeSpeed = .025f;
-float snakeLength = 12.0f;
+float snakeLength = 2.0f;
 float snakeBlockSize = 15.f;
 
 const int gameWidth = 520;
@@ -53,6 +53,16 @@ void displayGrid()
         line.setPosition(sf::Vector2f(0, i));
         line.setFillColor(lineColour);
         window.draw(line);
+    }
+}
+
+void handleTargetHit()
+{
+    if (snakeHead.getPosition().x == target.getPosition().x &&
+        snakeHead.getPosition().y == target.getPosition().y)
+    {
+        cout << "target hit" << endl;
+        snakeLength++;
     }
 }
 
@@ -184,6 +194,7 @@ int main()
 
         if (snakeMoveWaitCount > snakeMoveWait)
         {
+            handleTargetHit();
             drawGame();
         }
         
