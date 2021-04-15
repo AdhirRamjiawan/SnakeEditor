@@ -92,10 +92,18 @@ void handleTargetHit()
 
 void handleCollision()
 {
+    /* Check collision with borders */
+    if (snakeHead.getPosition().x < 0 || snakeHead.getPosition().x > gameWidth ||
+        snakeHead.getPosition().y < 0 || snakeHead.getPosition().y > gameHeight)
+    {
+        cout << "snake bumped its head!!!" << endl;
+        return;
+    }
+    
+    /* vv Check collision with itself vv */
     if (snakeBlocks.size() <= 2)
         return;
 
-    cout << snakeBlocks.size() << endl;
     for (int i = 0; i < snakeBlocks.size() - 2; i++)
     {
         sf::RectangleShape block = snakeBlocks.at(i);
