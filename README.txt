@@ -7,8 +7,9 @@
 
 TODO:
 	- better graphics
-	- snake collision with itself
 	- THE ACTUAL EDITOR?!!!
 	- Add dev docs to source control
 	- Clean up code make more abstracted
-	- 
+	- Add scene design pattern to go between splash, menu, game, game over etc..
+	- Create splash scene
+	- Create menu scene
