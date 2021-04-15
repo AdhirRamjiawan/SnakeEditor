@@ -9,9 +9,8 @@
 
 using namespace std;
 
-float snakeSpeed = .025f;
 float snakeLength = 2.0f;
-float snakeBlockSize = 15.f;
+const float snakeBlockSize = 15.f;
 
 const int gameWidth = 520;
 const int gameHeight = 400;
@@ -22,7 +21,7 @@ int snakeVerticalDirection = 1;
 float snakeHorizontalSpeed = 0;
 float snakeVerticalSpeed = 0;
 
-const float snakeMoveWait = 10.f;
+const float snakeMoveWait = 5.f;
 float snakeMoveWaitCount = 0;
 
 bool snakeCollided = false;
@@ -34,6 +33,20 @@ sf::RectangleShape snakeHead(sf::Vector2f(snakeBlockSize, snakeBlockSize));
 sf::RectangleShape target(sf::Vector2f(snakeBlockSize, snakeBlockSize));
 
 vector<sf::RectangleShape> snakeBlocks;
+
+
+constexpr int xGridPositionsLength()
+{
+    return gameWidth / snakeBlockSize;
+}
+
+constexpr int yGridPositionsLength()
+{
+    return gameHeight / snakeBlockSize;
+}
+
+vector<int> xGridPositions;
+vector<int> yGridPositions;
 
 void displayGrid()
 {
@@ -58,10 +71,21 @@ void displayGrid()
 
 void handleTargetHit()
 {
+  
     if (snakeHead.getPosition().x == target.getPosition().x &&
         snakeHead.getPosition().y == target.getPosition().y)
     {
-        cout << "target hit" << endl;
+        int randX = rand() % xGridPositionsLength();
+        int randY = rand() % yGridPositionsLength();
+
+        cout << "randx " << randX << "randY " << randY << endl;
+
+        int targetX = xGridPositions[randX];
+        int targetY = yGridPositions[randY];
+
+        target.setPosition(sf::Vector2f(targetX, targetY));
+
+        cout << "target hit, next target position: x-" << targetX  << ", y-" << targetY << endl;
         snakeLength++;
     }
 }
@@ -174,15 +198,28 @@ void drawGame()
     }
 }
 
-int main()
+void initGame()
 {
+    srand(time(NULL));
+
     snakeHead.setFillColor(sf::Color::Green);
-    sf::Clock clock;
-    
 
     target.setPosition(sf::Vector2f(10 * snakeBlockSize, 10 * snakeBlockSize));
     target.setFillColor(sf::Color::Red);
+    
+    for (int i = 0; i < gameWidth; i += snakeBlockSize)
+        xGridPositions.push_back(i);
 
+    for (int i = 0; i < gameHeight; i += snakeBlockSize)
+        yGridPositions.push_back(i);
+}
+
+int main()
+{
+    initGame();
+
+    sf::Clock clock;
+    
     // run the program as long as the window is open
     while (window.isOpen())
     {
