@@ -90,6 +90,24 @@ void handleTargetHit()
     }
 }
 
+void handleCollision()
+{
+    if (snakeBlocks.size() <= 2)
+        return;
+
+    cout << snakeBlocks.size() << endl;
+    for (int i = 0; i < snakeBlocks.size() - 2; i++)
+    {
+        sf::RectangleShape block = snakeBlocks.at(i);
+
+        if (snakeHead.getPosition().x == block.getPosition().x &&
+            snakeHead.getPosition().y == block.getPosition().y)
+        {
+            cout << "snake ate itself!!!" << endl;
+        }
+    }
+}
+
 void handleInput()
 {
     // check all the window's events that were triggered since the last iteration of the loop
@@ -232,6 +250,7 @@ int main()
         if (snakeMoveWaitCount > snakeMoveWait)
         {
             handleTargetHit();
+            handleCollision();
             drawGame();
         }
         
