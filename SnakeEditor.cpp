@@ -9,24 +9,25 @@
 
 using namespace std;
 
-float snakeLength = 2.0f;
+sf::Font font;
+
 const float snakeBlockSize = 15.f;
 
 const int gameWidth = 520;
 const int gameHeight = 400;
+const float snakeMoveWait = 5.f;
 
+float snakeLength = 2.0f;
 int snakeHorizontalDirection = 1;
 int snakeVerticalDirection = 1;
 
 float snakeHorizontalSpeed = 0;
 float snakeVerticalSpeed = 0;
-
-const float snakeMoveWait = 5.f;
 float snakeMoveWaitCount = 0;
 
 bool snakeCollided = false;
-
 bool displayGridEnabled = true;
+
 sf::RenderWindow window(sf::VideoMode(gameWidth, gameHeight), "Snake Game!");
 
 sf::RectangleShape snakeHead(sf::Vector2f(snakeBlockSize, snakeBlockSize));
@@ -97,6 +98,7 @@ void handleCollision()
         snakeHead.getPosition().y < 0 || snakeHead.getPosition().y > gameHeight)
     {
         cout << "snake bumped its head!!!" << endl;
+        snakeCollided = true;
         return;
     }
     
@@ -112,20 +114,15 @@ void handleCollision()
             snakeHead.getPosition().y == block.getPosition().y)
         {
             cout << "snake ate itself!!!" << endl;
+            snakeCollided = true;
+            break;
         }
     }
 }
 
 void handleInput()
 {
-    // check all the window's events that were triggered since the last iteration of the loop
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
-        // "close requested" event: we close the window
-        if (event.type == sf::Event::Closed)
-            window.close();
-    }
+    
 
     // THERE'S A BUG THAT ALLOWS YOU TO COLLIDE THE
     // SNAKE WITH ITSELF. YOU JUST NEED TO PRESS
@@ -177,10 +174,9 @@ void handleInput()
     }
 }
 
-void drawGame()
-{
-    window.clear(sf::Color::Black);
 
+void updateGame()
+{
     snakeHead.setPosition(sf::Vector2f(
         snakeHead.getPosition().x + snakeHorizontalSpeed * snakeHorizontalDirection,
         snakeHead.getPosition().y + snakeVerticalSpeed * snakeVerticalDirection
@@ -198,6 +194,11 @@ void drawGame()
     {
         snakeBlocks.erase(snakeBlocks.begin(), snakeBlocks.begin() + 1);
     }
+}
+
+void drawGame()
+{
+    window.clear(sf::Color::Black);
 
     if (displayGridEnabled)
     {
@@ -217,28 +218,81 @@ void drawGame()
     window.display();
 
     snakeMoveWaitCount = 0;
-
-    if (snakeCollided)
-    {
-        cout << "snake collided!" << endl;
-    }
 }
+
 
 void initGame()
 {
+    if (!font.loadFromFile("gaming.ttf"))
+    {
+        cout << "cannot find gaming.ttf" << endl;
+        exit(0);
+    }
+
     srand(time(NULL));
 
     snakeHead.setFillColor(sf::Color::Green);
 
     target.setPosition(sf::Vector2f(10 * snakeBlockSize, 10 * snakeBlockSize));
     target.setFillColor(sf::Color::Red);
-    
+
     for (int i = 0; i < gameWidth; i += snakeBlockSize)
         xGridPositions.push_back(i);
 
     for (int i = 0; i < gameHeight; i += snakeBlockSize)
         yGridPositions.push_back(i);
 }
+
+void resetGame()
+{
+    snakeHead.setPosition(sf::Vector2f(snakeBlockSize, snakeBlockSize));
+    snakeBlocks.clear();
+    
+    snakeLength = 2.0f;
+    snakeHorizontalDirection = 1;
+    snakeVerticalDirection = 1;
+
+    snakeHorizontalSpeed = 0;
+    snakeVerticalSpeed = 0;
+    snakeMoveWaitCount = 0;
+
+    displayGridEnabled = true;
+
+    snakeCollided = false;
+}
+
+void handleGameOverInput()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    {
+        resetGame();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    {
+        exit(0);
+    }
+}
+
+void updateGameOver()
+{
+
+}
+
+void drawGameOver()
+{
+    window.clear(sf::Color::Black);
+    
+    sf::Text txtGameOver;
+    txtGameOver.setFont(font);
+    txtGameOver.setString("GAME OVER");
+    txtGameOver.setCharacterSize(30);
+    txtGameOver.setFillColor(sf::Color::Green);
+    txtGameOver.setPosition(gameWidth / 2, gameHeight / 2);
+    txtGameOver.setStyle(sf::Text::Regular);
+    window.draw(txtGameOver);
+    window.display();
+}
+
 
 int main()
 {
@@ -251,6 +305,23 @@ int main()
     {
         sf::Time deltaTime = clock.restart();
 
+        // check all the window's events that were triggered since the last iteration of the loop
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        if (snakeCollided)
+        {
+            handleGameOverInput();
+            updateGameOver();
+            drawGameOver();
+            continue;
+        }
+
         handleInput();
 
         float updateDelta = deltaTime.asSeconds();
@@ -259,6 +330,7 @@ int main()
         {
             handleTargetHit();
             handleCollision();
+            updateGame();
             drawGame();
         }
         
