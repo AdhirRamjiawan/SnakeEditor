@@ -18,3 +18,4 @@ TODO:
 	- Add rocks that snake will collide with
 	- Add underground holes where snake can hide in. Enter tunnel and exit tunnel. In between enter and exit nothing can touch snake
 	- Add a tile map editor
+	- Create music and sound fx
