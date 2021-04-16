@@ -15,7 +15,7 @@ const float snakeBlockSize = 15.f;
 
 const int gameWidth = 520;
 const int gameHeight = 400;
-const float snakeMoveWait = 5.f;
+const float snakeMoveWait = 3.f;
 
 float snakeLength = 2.0f;
 int snakeHorizontalDirection = 1;
@@ -35,6 +35,8 @@ sf::RectangleShape target(sf::Vector2f(snakeBlockSize, snakeBlockSize));
 
 vector<sf::RectangleShape> snakeBlocks;
 
+sf::Text txtGameOver;
+sf::Text txtGameOverInstructions;
 
 constexpr int xGridPositionsLength()
 {
@@ -241,6 +243,20 @@ void initGame()
 
     for (int i = 0; i < gameHeight; i += snakeBlockSize)
         yGridPositions.push_back(i);
+    
+    txtGameOver.setFont(font);
+    txtGameOver.setString("GAME OVER");
+    txtGameOver.setCharacterSize(30);
+    txtGameOver.setFillColor(sf::Color::Green);
+    txtGameOver.setPosition(gameWidth / 2, gameHeight / 2);
+    txtGameOver.setStyle(sf::Text::Regular);
+
+    txtGameOverInstructions.setFont(font);
+    txtGameOverInstructions.setString("PRESS Q TO QUIT OR ESC TO REPLAY");
+    txtGameOverInstructions.setCharacterSize(20);
+    txtGameOverInstructions.setFillColor(sf::Color::Red);
+    txtGameOverInstructions.setPosition((gameWidth / 2) - (txtGameOverInstructions.getGlobalBounds().width / 2), gameHeight - 100);
+    txtGameOverInstructions.setStyle(sf::Text::Regular);
 }
 
 void resetGame()
@@ -275,21 +291,23 @@ void handleGameOverInput()
 
 void updateGameOver()
 {
+    txtGameOver.move(sf::Vector2f(-0.5f, 0));
 
+    float rightPositionOfText = txtGameOver.getPosition().x + txtGameOver.getGlobalBounds().width;
+
+    if (rightPositionOfText < 10)
+    {
+        txtGameOver.setPosition(sf::Vector2f(gameWidth + 10, txtGameOver.getPosition().y));
+    }
 }
 
 void drawGameOver()
 {
     window.clear(sf::Color::Black);
     
-    sf::Text txtGameOver;
-    txtGameOver.setFont(font);
-    txtGameOver.setString("GAME OVER");
-    txtGameOver.setCharacterSize(30);
-    txtGameOver.setFillColor(sf::Color::Green);
-    txtGameOver.setPosition(gameWidth / 2, gameHeight / 2);
-    txtGameOver.setStyle(sf::Text::Regular);
+    
     window.draw(txtGameOver);
+    window.draw(txtGameOverInstructions);
     window.display();
 }
 
