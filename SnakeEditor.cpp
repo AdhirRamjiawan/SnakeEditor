@@ -38,6 +38,10 @@ vector<sf::RectangleShape> snakeBlocks;
 sf::Text txtGameOver;
 sf::Text txtGameOverInstructions;
 
+sf::Texture snakeSpriteSheetTexture;
+sf::Sprite snakeSprite;
+
+
 constexpr int xGridPositionsLength()
 {
     return gameWidth / snakeBlockSize;
@@ -257,6 +261,13 @@ void initGame()
     txtGameOverInstructions.setFillColor(sf::Color::Red);
     txtGameOverInstructions.setPosition((gameWidth / 2) - (txtGameOverInstructions.getGlobalBounds().width / 2), gameHeight - 100);
     txtGameOverInstructions.setStyle(sf::Text::Regular);
+
+    snakeSpriteSheetTexture.loadFromFile("snake.png");
+    
+    snakeSprite.setTexture(snakeSpriteSheetTexture);
+    snakeSprite.setTextureRect(sf::IntRect(0, 0, 150, 200));
+    snakeSprite.setColor(sf::Color(255, 255, 255, 200));
+    snakeSprite.setPosition(100, 25);
 }
 
 void resetGame()
@@ -308,6 +319,10 @@ void drawGameOver()
     
     window.draw(txtGameOver);
     window.draw(txtGameOverInstructions);
+
+    
+    window.draw(snakeSprite);
+
     window.display();
 }
 
