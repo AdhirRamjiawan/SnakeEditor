@@ -19,3 +19,5 @@ TODO:
 	- Add underground holes where snake can hide in. Enter tunnel and exit tunnel. In between enter and exit nothing can touch snake
 	- Add a tile map editor
 	- Create music and sound fx
+	- pack all game assets into a binary data format
+	- Create a scoring system. Mabye time alive and length of snake?
