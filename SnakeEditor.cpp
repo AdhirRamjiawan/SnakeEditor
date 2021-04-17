@@ -45,7 +45,7 @@ vector<sf::Sprite> gameOverSnakeAnimationSprites;
 float gameOverSnakeAnimationFrameCount;
 float gameOverSnakeAnimationFrameIndex;
 
-const float gameOverSnakeAnimationFrameSpeed = 0.01f;
+const float gameOverSnakeAnimationFrameSpeed = 0.005f;
 
 constexpr int xGridPositionsLength()
 {
@@ -237,26 +237,28 @@ void initGameOverSnakeAnimation()
     sf::Sprite animationFrame2;
     sf::Sprite animationFrame3;
     sf::Sprite animationFrame4;
+    float posX = 200;
+    float posY = 25;
 
     animationFrame1.setTexture(snakeSpriteSheetTexture);
     animationFrame1.setTextureRect(sf::IntRect(0, 0, 150, 200));
     animationFrame1.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame1.setPosition(100, 25);
+    animationFrame1.setPosition(posX, posY);
 
     animationFrame2.setTexture(snakeSpriteSheetTexture);
     animationFrame2.setTextureRect(sf::IntRect(152, 0, 150, 200));
     animationFrame2.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame2.setPosition(100, 25);
+    animationFrame2.setPosition(posX, posY);
 
     animationFrame3.setTexture(snakeSpriteSheetTexture);
     animationFrame3.setTextureRect(sf::IntRect(0, 202, 150, 200));
     animationFrame3.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame3.setPosition(100, 25);
+    animationFrame3.setPosition(posX, posY);
 
     animationFrame4.setTexture(snakeSpriteSheetTexture);
     animationFrame4.setTextureRect(sf::IntRect(152, 202, 150, 200));
     animationFrame4.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame4.setPosition(100, 25);
+    animationFrame4.setPosition(posX, posY);
 
     gameOverSnakeAnimationSprites.push_back(animationFrame1);
     gameOverSnakeAnimationSprites.push_back(animationFrame2);
