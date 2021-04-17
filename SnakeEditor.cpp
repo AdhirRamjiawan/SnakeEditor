@@ -41,6 +41,11 @@ sf::Text txtGameOverInstructions;
 sf::Texture snakeSpriteSheetTexture;
 sf::Sprite snakeSprite;
 
+vector<sf::Sprite> gameOverSnakeAnimationSprites;
+float gameOverSnakeAnimationFrameCount;
+float gameOverSnakeAnimationFrameIndex;
+
+const float gameOverSnakeAnimationFrameSpeed = 0.01f;
 
 constexpr int xGridPositionsLength()
 {
@@ -226,6 +231,38 @@ void drawGame()
     snakeMoveWaitCount = 0;
 }
 
+void initGameOverSnakeAnimation()
+{
+    sf::Sprite animationFrame1;
+    sf::Sprite animationFrame2;
+    sf::Sprite animationFrame3;
+    sf::Sprite animationFrame4;
+
+    animationFrame1.setTexture(snakeSpriteSheetTexture);
+    animationFrame1.setTextureRect(sf::IntRect(0, 0, 150, 200));
+    animationFrame1.setColor(sf::Color(255, 255, 255, 200));
+    animationFrame1.setPosition(100, 25);
+
+    animationFrame2.setTexture(snakeSpriteSheetTexture);
+    animationFrame2.setTextureRect(sf::IntRect(152, 0, 150, 200));
+    animationFrame2.setColor(sf::Color(255, 255, 255, 200));
+    animationFrame2.setPosition(100, 25);
+
+    animationFrame3.setTexture(snakeSpriteSheetTexture);
+    animationFrame3.setTextureRect(sf::IntRect(0, 202, 150, 200));
+    animationFrame3.setColor(sf::Color(255, 255, 255, 200));
+    animationFrame3.setPosition(100, 25);
+
+    animationFrame4.setTexture(snakeSpriteSheetTexture);
+    animationFrame4.setTextureRect(sf::IntRect(152, 202, 150, 200));
+    animationFrame4.setColor(sf::Color(255, 255, 255, 200));
+    animationFrame4.setPosition(100, 25);
+
+    gameOverSnakeAnimationSprites.push_back(animationFrame1);
+    gameOverSnakeAnimationSprites.push_back(animationFrame2);
+    gameOverSnakeAnimationSprites.push_back(animationFrame3);
+    gameOverSnakeAnimationSprites.push_back(animationFrame4);
+}
 
 void initGame()
 {
@@ -268,6 +305,8 @@ void initGame()
     snakeSprite.setTextureRect(sf::IntRect(0, 0, 150, 200));
     snakeSprite.setColor(sf::Color(255, 255, 255, 200));
     snakeSprite.setPosition(100, 25);
+
+    initGameOverSnakeAnimation();
 }
 
 void resetGame()
@@ -310,6 +349,19 @@ void updateGameOver()
     {
         txtGameOver.setPosition(sf::Vector2f(gameWidth + 10, txtGameOver.getPosition().y));
     }
+
+    if (gameOverSnakeAnimationFrameCount >= 1)
+    {
+        gameOverSnakeAnimationFrameIndex++;
+        gameOverSnakeAnimationFrameCount = 0;
+
+        if (gameOverSnakeAnimationFrameIndex == 4)
+        {
+            gameOverSnakeAnimationFrameIndex = 0;
+        }
+    }
+
+    gameOverSnakeAnimationFrameCount += gameOverSnakeAnimationFrameSpeed;
 }
 
 void drawGameOver()
@@ -320,8 +372,7 @@ void drawGameOver()
     window.draw(txtGameOver);
     window.draw(txtGameOverInstructions);
 
-    
-    window.draw(snakeSprite);
+    window.draw(gameOverSnakeAnimationSprites[gameOverSnakeAnimationFrameIndex]);
 
     window.display();
 }
