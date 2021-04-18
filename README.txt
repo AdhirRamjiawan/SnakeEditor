@@ -23,3 +23,5 @@ TODO:
 	- Create a scoring system. Mabye time alive and length of snake?
 	- After a good few seconds of showing the splash screen change to show AI game play for a 20 seconds or so.
 	- Attempt to use smart pointers
+	- Add cmake instructions to copy game assets to output folder
+	- Add cmake instructions to create distributable version of game.
