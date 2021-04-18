@@ -22,3 +22,4 @@ TODO:
 	- pack all game assets into a binary data format
 	- Create a scoring system. Mabye time alive and length of snake?
 	- After a good few seconds of showing the splash screen change to show AI game play for a 20 seconds or so.
+	- Attempt to use smart pointers

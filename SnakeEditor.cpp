@@ -2,6 +2,9 @@
 //
 
 #include "SnakeEditor.h"
+#include "Animations/SpriteAnimator.h"
+#include "Animations/GameOver/DyingSnakeAnimator.h"
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -38,14 +41,7 @@ vector<sf::RectangleShape> snakeBlocks;
 sf::Text txtGameOver;
 sf::Text txtGameOverInstructions;
 
-sf::Texture snakeSpriteSheetTexture;
-sf::Sprite snakeSprite;
-
-vector<sf::Sprite> gameOverSnakeAnimationSprites;
-float gameOverSnakeAnimationFrameCount;
-float gameOverSnakeAnimationFrameIndex;
-
-const float gameOverSnakeAnimationFrameSpeed = 0.005f;
+DyingSnakeAnimator dyingSnakeAnimation;
 
 constexpr int xGridPositionsLength()
 {
@@ -231,41 +227,6 @@ void drawGame()
     snakeMoveWaitCount = 0;
 }
 
-void initGameOverSnakeAnimation()
-{
-    sf::Sprite animationFrame1;
-    sf::Sprite animationFrame2;
-    sf::Sprite animationFrame3;
-    sf::Sprite animationFrame4;
-    float posX = 200;
-    float posY = 25;
-
-    animationFrame1.setTexture(snakeSpriteSheetTexture);
-    animationFrame1.setTextureRect(sf::IntRect(0, 0, 150, 200));
-    animationFrame1.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame1.setPosition(posX, posY);
-
-    animationFrame2.setTexture(snakeSpriteSheetTexture);
-    animationFrame2.setTextureRect(sf::IntRect(152, 0, 150, 200));
-    animationFrame2.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame2.setPosition(posX, posY);
-
-    animationFrame3.setTexture(snakeSpriteSheetTexture);
-    animationFrame3.setTextureRect(sf::IntRect(0, 202, 150, 200));
-    animationFrame3.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame3.setPosition(posX, posY);
-
-    animationFrame4.setTexture(snakeSpriteSheetTexture);
-    animationFrame4.setTextureRect(sf::IntRect(152, 202, 150, 200));
-    animationFrame4.setColor(sf::Color(255, 255, 255, 200));
-    animationFrame4.setPosition(posX, posY);
-
-    gameOverSnakeAnimationSprites.push_back(animationFrame1);
-    gameOverSnakeAnimationSprites.push_back(animationFrame2);
-    gameOverSnakeAnimationSprites.push_back(animationFrame3);
-    gameOverSnakeAnimationSprites.push_back(animationFrame4);
-}
-
 void initGame()
 {
     if (!font.loadFromFile("gaming.ttf"))
@@ -300,15 +261,6 @@ void initGame()
     txtGameOverInstructions.setFillColor(sf::Color::Red);
     txtGameOverInstructions.setPosition((gameWidth / 2) - (txtGameOverInstructions.getGlobalBounds().width / 2), gameHeight - 100);
     txtGameOverInstructions.setStyle(sf::Text::Regular);
-
-    snakeSpriteSheetTexture.loadFromFile("snake.png");
-    
-    snakeSprite.setTexture(snakeSpriteSheetTexture);
-    snakeSprite.setTextureRect(sf::IntRect(0, 0, 150, 200));
-    snakeSprite.setColor(sf::Color(255, 255, 255, 200));
-    snakeSprite.setPosition(100, 25);
-
-    initGameOverSnakeAnimation();
 }
 
 void resetGame()
@@ -352,18 +304,7 @@ void updateGameOver()
         txtGameOver.setPosition(sf::Vector2f(gameWidth + 10, txtGameOver.getPosition().y));
     }
 
-    if (gameOverSnakeAnimationFrameCount >= 1)
-    {
-        gameOverSnakeAnimationFrameIndex++;
-        gameOverSnakeAnimationFrameCount = 0;
-
-        if (gameOverSnakeAnimationFrameIndex == 4)
-        {
-            gameOverSnakeAnimationFrameIndex = 0;
-        }
-    }
-
-    gameOverSnakeAnimationFrameCount += gameOverSnakeAnimationFrameSpeed;
+    dyingSnakeAnimation.UpdateAnimation();
 }
 
 void drawGameOver()
@@ -374,7 +315,7 @@ void drawGameOver()
     window.draw(txtGameOver);
     window.draw(txtGameOverInstructions);
 
-    window.draw(gameOverSnakeAnimationSprites[gameOverSnakeAnimationFrameIndex]);
+    dyingSnakeAnimation.DrawAnimation(&window);
 
     window.display();
 }

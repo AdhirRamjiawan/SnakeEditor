@@ -6,7 +6,7 @@ cmake_minimum_required (VERSION 3.8)
 project ("SnakeEditor")
 
 # Add source to this project's executable.
-add_executable (SnakeEditor "SnakeEditor.cpp" "SnakeEditor.h")
+add_executable (SnakeEditor "SnakeEditor.cpp" "SnakeEditor.h" "Animations/SpriteAnimator.cpp" "Animations/SpriteAnimator.h" "Animations/GameOver/DyingSnakeAnimator.h" "Animations/GameOver/DyingSnakeAnimator.cpp")
 
 
 include_directories(SnakeEditor "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/include")
