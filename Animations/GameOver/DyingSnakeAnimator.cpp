@@ -4,6 +4,10 @@
 
 DyingSnakeAnimator::DyingSnakeAnimator()
 {
+    SpriteAnimator::FrameSpeed = 0.005f;
+    this->FrameCount = 0;
+    this->FrameIndex = 0;
+
     SpriteAnimator::SpriteSheet.loadFromFile("snake.png");
     sf::Sprite animationFrame1;
     sf::Sprite animationFrame2;
@@ -36,8 +40,6 @@ DyingSnakeAnimator::DyingSnakeAnimator()
     SpriteAnimator::Sprites.push_back(animationFrame2);
     SpriteAnimator::Sprites.push_back(animationFrame3);
     SpriteAnimator::Sprites.push_back(animationFrame4);
-
-    SpriteAnimator::FrameSpeed = 0.005f;
 }
 
 DyingSnakeAnimator::~DyingSnakeAnimator()

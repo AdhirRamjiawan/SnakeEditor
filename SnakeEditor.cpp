@@ -4,6 +4,7 @@
 #include "SnakeEditor.h"
 #include "Animations/SpriteAnimator.h"
 #include "Animations/GameOver/DyingSnakeAnimator.h"
+#include "Scenes/GameOver/GameOverScene.h"
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -38,10 +39,7 @@ sf::RectangleShape target(sf::Vector2f(snakeBlockSize, snakeBlockSize));
 
 vector<sf::RectangleShape> snakeBlocks;
 
-sf::Text txtGameOver;
-sf::Text txtGameOverInstructions;
 
-DyingSnakeAnimator dyingSnakeAnimation;
 
 constexpr int xGridPositionsLength()
 {
@@ -55,6 +53,8 @@ constexpr int yGridPositionsLength()
 
 vector<int> xGridPositions;
 vector<int> yGridPositions;
+
+
 
 void displayGrid()
 {
@@ -248,19 +248,7 @@ void initGame()
     for (int i = 0; i < gameHeight; i += snakeBlockSize)
         yGridPositions.push_back(i);
     
-    txtGameOver.setFont(font);
-    txtGameOver.setString("GAME OVER");
-    txtGameOver.setCharacterSize(30);
-    txtGameOver.setFillColor(sf::Color::Green);
-    txtGameOver.setPosition(gameWidth / 2, gameHeight / 2);
-    txtGameOver.setStyle(sf::Text::Regular);
-
-    txtGameOverInstructions.setFont(font);
-    txtGameOverInstructions.setString("PRESS Q TO QUIT OR ESC TO REPLAY");
-    txtGameOverInstructions.setCharacterSize(20);
-    txtGameOverInstructions.setFillColor(sf::Color::Red);
-    txtGameOverInstructions.setPosition((gameWidth / 2) - (txtGameOverInstructions.getGlobalBounds().width / 2), gameHeight - 100);
-    txtGameOverInstructions.setStyle(sf::Text::Regular);
+    
 }
 
 void resetGame()
@@ -281,49 +269,12 @@ void resetGame()
     snakeCollided = false;
 }
 
-void handleGameOverInput()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-    {
-        resetGame();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-    {
-        exit(0);
-    }
-}
-
-void updateGameOver()
-{
-    txtGameOver.move(sf::Vector2f(-0.5f, 0));
-
-    float rightPositionOfText = txtGameOver.getPosition().x + txtGameOver.getGlobalBounds().width;
-
-    if (rightPositionOfText < 10)
-    {
-        txtGameOver.setPosition(sf::Vector2f(gameWidth + 10, txtGameOver.getPosition().y));
-    }
-
-    dyingSnakeAnimation.UpdateAnimation();
-}
-
-void drawGameOver()
-{
-    window.clear(sf::Color::Black);
-    
-    
-    window.draw(txtGameOver);
-    window.draw(txtGameOverInstructions);
-
-    dyingSnakeAnimation.DrawAnimation(&window);
-
-    window.display();
-}
-
 
 int main()
 {
     initGame();
+
+    GameOverScene gameOverScene(font, gameWidth, gameHeight);
 
     sf::Clock clock;
     
@@ -343,9 +294,9 @@ int main()
 
         if (snakeCollided)
         {
-            handleGameOverInput();
-            updateGameOver();
-            drawGameOver();
+            gameOverScene.HandleInput();
+            gameOverScene.Update();
+            gameOverScene.Draw(&window);
             continue;
         }
 
