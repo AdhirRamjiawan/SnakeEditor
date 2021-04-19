@@ -2,8 +2,9 @@
 #include "GameOverScene.h"
 
 
-GameOverScene::GameOverScene(sf::Font font, float gameWidth, float gameHeight)
+GameOverScene::GameOverScene(GameScene* gameScene, sf::Font font, float gameWidth, float gameHeight)
 {
+    this->gameScene = gameScene;
     this->font = font;
     this->gameHeight = gameHeight;
     this->gameWidth = gameWidth;
@@ -55,7 +56,7 @@ void GameOverScene::HandleInput()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        //resetGame();
+        this->gameScene->Reset();
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
