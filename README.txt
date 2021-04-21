@@ -25,3 +25,5 @@ TODO:
 	- Attempt to use smart pointers
 	- Add cmake instructions to copy game assets to output folder
 	- Add cmake instructions to create distributable version of game.
+	- Look at double buffering techniques
+	- Create full custom font file. Currently only have capital letters without numbers or symbols.
