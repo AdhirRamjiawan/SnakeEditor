@@ -27,3 +27,6 @@ TODO:
 	- Add cmake instructions to create distributable version of game.
 	- Look at double buffering techniques
 	- Create full custom font file. Currently only have capital letters without numbers or symbols.
+	- Add shader effects: https://www.sfml-dev.org/tutorials/2.0/graphics-shader.php
+	- snake must spit out apples too to fight enemies and bosses
+	- Add multiple targets and when snake is able to hit these targets in quick succession keep track of a combo counter
