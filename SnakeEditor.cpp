@@ -36,7 +36,8 @@ int main()
     GameOverScene gameOverScene(&gameScene, font, gameWidth, gameHeight);
 
     sf::Clock clock;
-    
+    window.setFramerateLimit(10);
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -60,15 +61,8 @@ int main()
         }
 
         gameScene.HandleInput();
-
-        // TODO: change this to use a proper game loop that operates on FPS
-        if (gameScene.GetSnakeMoveWaitCount() > snakeMoveWait)
-        {
-            gameScene.Update();
-            gameScene.Draw(&window);
-        }
-        
-        gameScene.IncrementSnakeMoveWaitCount();
+        gameScene.Update();
+        gameScene.Draw(&window);
     }
 	return 0;
 }

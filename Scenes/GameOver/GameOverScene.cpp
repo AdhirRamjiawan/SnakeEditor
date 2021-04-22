@@ -28,7 +28,7 @@ GameOverScene::GameOverScene(GameScene* gameScene, sf::Font font, float gameWidt
 
 void GameOverScene::Update()
 {
-    txtGameOver.move(sf::Vector2f(-0.5f, 0));
+    txtGameOver.move(sf::Vector2f(-3.f, 0));
 
     float rightPositionOfText = txtGameOver.getPosition().x + txtGameOver.getGlobalBounds().width;
 
@@ -42,6 +42,7 @@ void GameOverScene::Update()
 
 void GameOverScene::Draw(sf::RenderWindow* window)
 {
+    window->setFramerateLimit(60);
     window->clear(sf::Color::Black);
 
     window->draw(txtGameOver);
@@ -66,6 +67,4 @@ void GameOverScene::HandleInput()
 
 GameOverScene::~GameOverScene()
 {
-    dyingSnakeAnimation->~DyingSnakeAnimator();
-	Scene::~Scene();
 }

@@ -4,7 +4,7 @@
 
 DyingSnakeAnimator::DyingSnakeAnimator()
 {
-    SpriteAnimator::FrameSpeed = 0.005f;
+    SpriteAnimator::FrameSpeed = 0.025f;
     this->FrameCount = 0;
     this->FrameIndex = 0;
 
