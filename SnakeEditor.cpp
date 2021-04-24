@@ -6,6 +6,7 @@
 #include "Animations/GameOver/DyingSnakeAnimator.h"
 #include "Scenes/GameOver/GameOverScene.h"
 #include "Scenes/Game/GameScene.h"
+#include "Scenes/Splash/SplashScene.h"
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -32,6 +33,7 @@ int main()
     }
     srand(time(NULL));
 
+    SplashScene splashScene(&font);
     GameScene gameScene(gameWidth, gameHeight);
     GameOverScene gameOverScene(&gameScene, font, gameWidth, gameHeight);
 
@@ -51,6 +53,9 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+
+        splashScene.Draw(&window);
+        continue;
 
         if (gameScene.HasSnakeCollided())
         {

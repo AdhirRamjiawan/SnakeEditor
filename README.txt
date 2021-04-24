@@ -10,7 +10,6 @@ TODO:
 	- THE ACTUAL EDITOR?!!!
 	- Add dev docs to source control
 	- Clean up code make more abstracted
-	- Add scene design pattern to go between splash, menu, game, game over etc..
 	- Create splash scene
 	- Create menu scene
 	- Add mongoose enemies
@@ -30,3 +29,4 @@ TODO:
 	- Add shader effects: https://www.sfml-dev.org/tutorials/2.0/graphics-shader.php
 	- snake must spit out apples too to fight enemies and bosses
 	- Add multiple targets and when snake is able to hit these targets in quick succession keep track of a combo counter
+	- Add a new SceneManager to manage current scene and navigate to another scene.
