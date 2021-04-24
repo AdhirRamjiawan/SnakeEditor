@@ -3,6 +3,7 @@
 
 
 #include "../Scene.h"
+#include "../SceneManager.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>

@@ -4,6 +4,7 @@
 
 SplashScene::SplashScene(sf::Font *font)
 {
+	this->SetName("Splash");
 	this->spriteSheet.loadFromFile("snake.png");
 
 	snakeSprite.setTexture(this->spriteSheet);
@@ -45,6 +46,6 @@ void SplashScene::HandleInput()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
-		// go to main menu scene
+		SceneManager::GetInstance()->SetCurrentScene("Game");
 	}
 }

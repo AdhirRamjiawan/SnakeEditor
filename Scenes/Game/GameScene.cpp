@@ -4,6 +4,7 @@
 
 GameScene::GameScene(float gameWidth, float gameHeight)
 {
+    this->SetName("Game");
     this->gameWidth = gameWidth;
     this->gameHeight = gameHeight;
 
@@ -49,6 +50,12 @@ void GameScene::Reset()
 
 void GameScene::Update()
 {
+    if (HasSnakeCollided())
+    {
+        SceneManager::GetInstance()->SetCurrentScene("GameOver");
+        return;
+    }
+
     this->handleTargetHit();
     this->handleCollision();
 

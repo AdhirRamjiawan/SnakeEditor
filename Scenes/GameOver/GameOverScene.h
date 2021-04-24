@@ -1,5 +1,6 @@
 
 #include "../Scene.h"
+#include "../SceneManager.h"
 #include "../../Animations/GameOver/DyingSnakeAnimator.h"
 #include "../Scenes/Game/GameScene.h"
 
@@ -9,7 +10,7 @@
 class GameOverScene : public Scene 
 {
 public:
-	GameOverScene(GameScene *gameScene, sf::Font font, float gameWidth, float gameHeight);
+	GameOverScene(sf::Font font, float gameWidth, float gameHeight);
 	~GameOverScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);

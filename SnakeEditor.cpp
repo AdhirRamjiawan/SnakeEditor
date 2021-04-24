@@ -7,6 +7,8 @@
 #include "Scenes/GameOver/GameOverScene.h"
 #include "Scenes/Game/GameScene.h"
 #include "Scenes/Splash/SplashScene.h"
+#include "Scenes/Scene.h"
+#include "Scenes/SceneManager.h"
 
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -33,9 +35,12 @@ int main()
     }
     srand(time(NULL));
 
-    SplashScene splashScene(&font);
-    GameScene gameScene(gameWidth, gameHeight);
-    GameOverScene gameOverScene(&gameScene, font, gameWidth, gameHeight);
+    SceneManager *sceneManager = SceneManager::GetInstance();
+    sceneManager->AddScene(new SplashScene(&font));
+    sceneManager->AddScene(new GameScene(gameWidth, gameHeight));
+    sceneManager->AddScene(new GameOverScene(font, gameWidth, gameHeight));
+
+    sceneManager->SetCurrentScene("Splash");
 
     sf::Clock clock;
     window.setFramerateLimit(10);
@@ -54,20 +59,9 @@ int main()
                 window.close();
         }
 
-        splashScene.Draw(&window);
-        continue;
-
-        if (gameScene.HasSnakeCollided())
-        {
-            gameOverScene.HandleInput();
-            gameOverScene.Update();
-            gameOverScene.Draw(&window);
-            continue;
-        }
-
-        gameScene.HandleInput();
-        gameScene.Update();
-        gameScene.Draw(&window);
+        sceneManager->GetCurrentScene()->HandleInput();
+        sceneManager->GetCurrentScene()->Update();
+        sceneManager->GetCurrentScene()->Draw(&window);
     }
 	return 0;
 }

@@ -2,6 +2,7 @@
 #pragma once
 
 #include "../Scene.h"
+#include "../SceneManager.h"
 #include "../Utils/TextUtils.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
