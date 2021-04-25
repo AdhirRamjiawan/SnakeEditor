@@ -19,7 +19,7 @@ GameOverScene::GameOverScene(sf::Font font, float gameWidth, float gameHeight)
     txtGameOver.setStyle(sf::Text::Regular);
 
     txtGameOverInstructions.setFont(this->font);
-    txtGameOverInstructions.setString("PRESS Q TO QUIT OR ESC TO REPLAY");
+    txtGameOverInstructions.setString("PRESS ESC TO QUIT OR ENTER TO REPLAY");
     txtGameOverInstructions.setCharacterSize(20);
     txtGameOverInstructions.setFillColor(sf::Color::Red);
     txtGameOverInstructions.setPosition((this->gameWidth / 2) - (txtGameOverInstructions.getGlobalBounds().width / 2), this->gameHeight - 100);
@@ -57,14 +57,14 @@ void GameOverScene::Draw(sf::RenderWindow* window)
 
 void GameOverScene::HandleInput()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
     {
         SceneManager::GetInstance()->SetCurrentScene("Game");
         SceneManager::GetInstance()->GetCurrentScene()->Reset();
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        exit(0);
+        SceneManager::GetInstance()->SetCurrentScene("MainMenu");
     }
 }
 

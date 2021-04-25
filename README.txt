@@ -9,12 +9,13 @@ TODO:
 	- better graphics
 	- THE ACTUAL EDITOR?!!!
 	- Add dev docs to source control
-	- Clean up code make more abstracted
+	- Add libs to source control
 	- Create menu scene
 	- Add mongoose enemies
 	- Add moving targets
 	- Add rocks that snake will collide with
 	- Add underground holes where snake can hide in. Enter tunnel and exit tunnel. In between enter and exit nothing can touch snake
+	- Create a level file format
 	- Add a tile map editor
 	- Create music and sound fx
 	- pack all game assets into a binary data format
@@ -29,3 +30,5 @@ TODO:
 	- snake must spit out apples too to fight enemies and bosses
 	- Add multiple targets and when snake is able to hit these targets in quick succession keep track of a combo counter
 	- In the snake editor add in a way to create text and shape elements and generate c++ code.
+	- Make SFML lib dependencies more relative for CI/CD builds etc.
+	- Implement scene stacks for Scene Manager especially for GUI driven scenes like Main menu

@@ -46,6 +46,6 @@ void SplashScene::HandleInput()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
-		SceneManager::GetInstance()->SetCurrentScene("Game");
+		SceneManager::GetInstance()->SetCurrentScene("MainMenu");
 	}
 }
