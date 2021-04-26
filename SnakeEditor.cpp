@@ -9,6 +9,7 @@
 #include "Scenes/Splash/SplashScene.h"
 #include "Scenes/MainMenu/MainMenuScene.h"
 #include "Scenes/MainMenu/Credits/CreditsScene.h"
+#include "Scenes/MainMenu/Exit/ExitScene.h"
 #include "Scenes/Scene.h"
 #include "Scenes/SceneManager.h"
 
@@ -41,6 +42,7 @@ int main()
     sceneManager->AddScene(new SplashScene(&font));
     sceneManager->AddScene(new MainMenuScene(&font));
     sceneManager->AddScene(new CreditsScene(&font));
+    sceneManager->AddScene(new ExitScene(&font));
     sceneManager->AddScene(new GameScene(gameWidth, gameHeight));
     sceneManager->AddScene(new GameOverScene(font, gameWidth, gameHeight));
 

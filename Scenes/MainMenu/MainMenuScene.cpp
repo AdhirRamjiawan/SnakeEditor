@@ -70,7 +70,7 @@ void MainMenuScene::HandleInput()
 		}
 		else if (menuPointer == 4)
 		{
-			exit(0);
+			SceneManager::GetInstance()->SetCurrentScene("MainMenu.Exit");
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

@@ -10,7 +10,7 @@ TODO:
 	- THE ACTUAL EDITOR?!!!
 	- Add dev docs to source control
 	- Add libs to source control
-	- Create menu scene
+	- Create menu scene (Load game, Options)
 	- Add mongoose enemies
 	- Add moving targets
 	- Add rocks that snake will collide with
@@ -29,6 +29,10 @@ TODO:
 	- Add shader effects: https://www.sfml-dev.org/tutorials/2.0/graphics-shader.php
 	- snake must spit out apples too to fight enemies and bosses
 	- Add multiple targets and when snake is able to hit these targets in quick succession keep track of a combo counter
-	- In the snake editor add in a way to create text and shape elements and generate c++ code.
+	- In the snake editor add in a UI designer to create text and shape elements and generate c++ code.
 	- Make SFML lib dependencies more relative for CI/CD builds etc.
 	- Implement scene stacks for Scene Manager especially for GUI driven scenes like Main menu
+
+
+BUGS:
+	- After the first game of snake the game speed is too high.
