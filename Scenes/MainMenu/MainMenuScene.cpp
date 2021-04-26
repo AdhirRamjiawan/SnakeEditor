@@ -64,6 +64,10 @@ void MainMenuScene::HandleInput()
 		{
 			SceneManager::GetInstance()->SetCurrentScene("Game");
 		}
+		else if (menuPointer == 2)
+		{
+			SceneManager::GetInstance()->SetCurrentScene("MainMenu.Credits");
+		}
 		else if (menuPointer == 4)
 		{
 			exit(0);
