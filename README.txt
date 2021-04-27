@@ -32,7 +32,9 @@ TODO:
 	- In the snake editor add in a UI designer to create text and shape elements and generate c++ code.
 	- Make SFML lib dependencies more relative for CI/CD builds etc.
 	- Implement scene stacks for Scene Manager especially for GUI driven scenes like Main menu
+	- Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
 
 
 BUGS:
 	- After the first game of snake the game speed is too high.
+	- Can't exit game once in game.

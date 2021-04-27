@@ -47,4 +47,6 @@ private:
 	sf::RectangleShape *snakeHead;
 	sf::RectangleShape *target;
 	std::vector<sf::RectangleShape> *snakeBlocks;
+	sf::Sprite* sprApple;
+	const float sprAppleOffset = 5.f;
 };

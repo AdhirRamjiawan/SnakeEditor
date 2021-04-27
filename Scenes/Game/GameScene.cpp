@@ -1,6 +1,6 @@
 
 #include "GameScene.h"
-
+#include "../../Utils/SpriteUtils.h"
 
 GameScene::GameScene(float gameWidth, float gameHeight)
 {
@@ -8,15 +8,16 @@ GameScene::GameScene(float gameWidth, float gameHeight)
     this->gameWidth = gameWidth;
     this->gameHeight = gameHeight;
 
+    this->sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
     this->snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
-    this->target = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
+    //this->target = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
 
     snakeBlocks = new std::vector<sf::RectangleShape>();
 
     this->snakeHead->setFillColor(sf::Color::Green);
 
-    this->target->setPosition(sf::Vector2f(10 * snakeBlockSize, 10 * snakeBlockSize));
-    this->target->setFillColor(sf::Color::Red);
+    //this->target->setPosition(sf::Vector2f(10 * snakeBlockSize, 10 * snakeBlockSize));
+    //this->target->setFillColor(sf::Color::Red);
 
     for (int i = 0; i < this->gameWidth; i += snakeBlockSize)
         xGridPositions.push_back(i);
@@ -146,7 +147,8 @@ void GameScene::Draw(sf::RenderWindow *window)
 
     window->draw(*this->snakeHead);
 
-    window->draw(*this->target);
+    //window->draw(*this->target);
+    window->draw(*this->sprApple);
 
     // end the current frame
     window->display();
@@ -195,8 +197,8 @@ void GameScene::handleTargetHit()
     int xGridPositionsLength = this->gameWidth / this->snakeBlockSize;
     int yGridPositionsLength = this->gameHeight / this->snakeBlockSize;
 
-    if (this->snakeHead->getPosition().x == this->target->getPosition().x &&
-        this->snakeHead->getPosition().y == this->target->getPosition().y)
+    if (this->snakeHead->getPosition().x == (this->sprApple->getPosition().x + sprAppleOffset) &&
+        this->snakeHead->getPosition().y == (this->sprApple->getPosition().y + sprAppleOffset))
     {
         int randX = rand() % xGridPositionsLength;
         int randY = rand() % yGridPositionsLength;
@@ -206,7 +208,7 @@ void GameScene::handleTargetHit()
         int targetX = xGridPositions[randX];
         int targetY = yGridPositions[randY];
 
-        this->target->setPosition(sf::Vector2f(targetX, targetY));
+        this->sprApple->setPosition(sf::Vector2f(targetX - sprAppleOffset, targetY - sprAppleOffset));
 
         //cout << "target hit, next target position: x-" << targetX << ", y-" << targetY << endl;
         snakeLength++;
