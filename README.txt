@@ -36,8 +36,6 @@ TODO:
 	- Make SFML lib dependencies more relative for CI/CD builds etc.
 	- Implement scene stacks for Scene Manager especially for GUI driven scenes like Main menu
 	- Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
-	- Add app icon for the game: http://web.mit.edu/rhel-doc/3/rhel-binutils-en-3/windres.html
-	- Remove the console window that opens up first
 	- Remove setFrameRateLimit from Draw scene calls.
 
 
