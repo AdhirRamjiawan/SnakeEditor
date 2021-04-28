@@ -33,5 +33,7 @@ target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFM
 target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-window-d.lib")
 target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-graphics-d.lib")
 
+if (MSVC)
 target_link_options(SnakeEditor PRIVATE /SUBSYSTEM:WINDOWS)
+endif(MSVC)
 # TODO: Add tests and install targets if needed.
