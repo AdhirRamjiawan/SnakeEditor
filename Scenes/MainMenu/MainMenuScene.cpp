@@ -24,6 +24,7 @@ void MainMenuScene::Update()
 
 void MainMenuScene::Draw(sf::RenderWindow* window)
 {
+	window->setFramerateLimit(10);
 	window->clear(sf::Color::Black);
 
 	window->draw(*sprApple);
@@ -77,4 +78,5 @@ void MainMenuScene::HandleInput()
 	{
 		
 	}
+	sf::sleep(sf::milliseconds(5));
 }
