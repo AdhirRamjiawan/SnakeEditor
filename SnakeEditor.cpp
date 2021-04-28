@@ -29,7 +29,14 @@ const float snakeMoveWait = 3.f;
 
 int main()
 {
+    sf::Image iconImage;
+
     sf::RenderWindow window(sf::VideoMode(gameWidth, gameHeight), "Snake Game!");
+
+    if (iconImage.loadFromFile("icon.bmp"))
+    {
+        window.setIcon(iconImage.getSize().x, iconImage.getSize().y, iconImage.getPixelsPtr());
+    }
 
     if (!font.loadFromFile("gaming.ttf"))
     {

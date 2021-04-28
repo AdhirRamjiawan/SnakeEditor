@@ -4,6 +4,10 @@
 /|__________________|
 /////////////////////
 
+BUILD INSTRUCTIONS:
+	- For windows run "Windows/resource_compile.bat" to generate resource object file needed for icon
+	- Run cmake build either through Visual studio or command line.
+
 
 TODO:
 	- better graphics

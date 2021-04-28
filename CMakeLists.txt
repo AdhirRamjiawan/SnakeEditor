@@ -21,7 +21,9 @@ add_executable (SnakeEditor "SnakeEditor.cpp" "SnakeEditor.h"
 "Scenes/SceneManager.cpp" "Scenes/SceneManager.h" 
 "Scenes/MainMenu/MainMenuScene.cpp" "Scenes/MainMenu/MainMenuScene.h"
 "Utils/SpriteUtils.cpp" "Utils/SpriteUtils.h" 
-"Scenes/MainMenu/Credits/CreditsScene.cpp" "Scenes/MainMenu/Credits/CreditsScene.h" "Scenes/MainMenu/Exit/ExitScene.h" "Scenes/MainMenu/Exit/ExitScene.cpp")
+"Scenes/MainMenu/Credits/CreditsScene.cpp" "Scenes/MainMenu/Credits/CreditsScene.h" 
+"Scenes/MainMenu/Exit/ExitScene.h" "Scenes/MainMenu/Exit/ExitScene.cpp"
+"Windows/SnakeEditorResources.o")
 
 
 include_directories(SnakeEditor "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/include")
