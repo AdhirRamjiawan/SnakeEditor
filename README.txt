@@ -35,8 +35,8 @@ TODO:
 	- Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
 	- Add app icon for the game
 	- Remove the console window that opens up first
+	- Remove setFrameRateLimit from Draw scene calls.
 
 
 BUGS:
-	- After the first game of snake the game speed is too high.
 	- Can't exit game once in game.

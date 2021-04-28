@@ -133,6 +133,7 @@ void GameScene::HandleInput()
 
 void GameScene::Draw(sf::RenderWindow *window)
 {
+    window->setFramerateLimit(10);
     window->clear(sf::Color::Black);
 
     if (displayGridEnabled)
