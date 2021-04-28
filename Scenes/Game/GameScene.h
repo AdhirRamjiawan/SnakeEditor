@@ -19,9 +19,6 @@ public:
 	void Draw(sf::RenderWindow* window);
 	void HandleInput();
 	void Reset();
-	bool HasSnakeCollided();
-	float GetSnakeMoveWaitCount();
-	void IncrementSnakeMoveWaitCount();
 
 private:
 	void displayGrid(sf::RenderWindow* window);
@@ -40,13 +37,13 @@ private:
 	bool displayGridEnabled = true;
 	float gameWidth = 0;
 	float gameHeight = 0;
-	const float snakeBlockSize = 15.f;
 	
 	std::vector<int> xGridPositions;
 	std::vector<int> yGridPositions;
 	sf::RectangleShape *snakeHead;
-	sf::RectangleShape *target;
 	std::vector<sf::RectangleShape> *snakeBlocks;
 	sf::Sprite* sprApple;
+	
+	const float snakeBlockSize = 15.f;
 	const float sprAppleOffset = 5.f;
 };

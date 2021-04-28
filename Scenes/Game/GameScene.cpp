@@ -10,14 +10,10 @@ GameScene::GameScene(float gameWidth, float gameHeight)
 
     this->sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
     this->snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
-    //this->target = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
 
     snakeBlocks = new std::vector<sf::RectangleShape>();
 
     this->snakeHead->setFillColor(sf::Color::Green);
-
-    //this->target->setPosition(sf::Vector2f(10 * snakeBlockSize, 10 * snakeBlockSize));
-    //this->target->setFillColor(sf::Color::Red);
 
     for (int i = 0; i < this->gameWidth; i += snakeBlockSize)
         xGridPositions.push_back(i);
@@ -51,7 +47,7 @@ void GameScene::Reset()
 
 void GameScene::Update()
 {
-    if (HasSnakeCollided())
+    if (this->snakeCollided)
     {
         SceneManager::GetInstance()->SetCurrentScene("GameOver");
         return;
@@ -147,30 +143,11 @@ void GameScene::Draw(sf::RenderWindow *window)
     }
 
     window->draw(*this->snakeHead);
-
-    //window->draw(*this->target);
     window->draw(*this->sprApple);
 
-    // end the current frame
     window->display();
-
-    snakeMoveWaitCount = 0;
 }
 
-bool GameScene::HasSnakeCollided()
-{
-    return this->snakeCollided;
-}
-
-float GameScene::GetSnakeMoveWaitCount()
-{
-    return this->snakeMoveWaitCount;
-}
-
-void GameScene::IncrementSnakeMoveWaitCount()
-{
-    this->snakeMoveWaitCount += 0.0005f;
-}
 
 void GameScene::displayGrid(sf::RenderWindow* window)
 {
