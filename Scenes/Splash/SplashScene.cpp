@@ -14,7 +14,7 @@ SplashScene::SplashScene(sf::Font *font)
 	snakeSprite.setScale(2.f, 2.f);
 
 	txtTitle = TextUtils::CreateText(font, "SNAKE", 310.f, 50.f, 40, sf::Color::Red);
-	txtCreatedBy = TextUtils::CreateText(font, "CREATED BY ADHIR RAMJIAWAN 2021", 100, 350, 20, sf::Color::Blue);
+	txtCreatedBy = TextUtils::CreateText(font, "Created by Adhir Ramjiawan  2021", 100, 350, 20, sf::Color::Blue);
 	txtContinue = TextUtils::CreateText(font, "PRESS ENTER TO CONTINUE", 270, 150, 15, sf::Color::Green);
 }
 

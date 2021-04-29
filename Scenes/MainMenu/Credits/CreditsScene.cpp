@@ -6,10 +6,10 @@ CreditsScene::CreditsScene(sf::Font *font)
 {
     this->SetName("MainMenu.Credits");
 
-    txtCreatedBy        = TextUtils::CreateText(font, "CREATED BY", 50, 50, 25, sf::Color::White);
-    txtCreatedByValue   = TextUtils::CreateText(font, "ADHIR RAMJIAWAN", 50, 100, 25, sf::Color::White);
+    txtCreatedBy        = TextUtils::CreateText(font, "Created by", 50, 50, 25, sf::Color::White);
+    txtCreatedByValue   = TextUtils::CreateText(font, "Adhir Ramjiawan", 50, 100, 25, sf::Color::White);
     txtCreatedYear      = TextUtils::CreateText(font, "2021", 50, 150, 25, sf::Color::White);
-    txtEmail            = TextUtils::CreateText(font, "ADHIRRAMJIAWAN0@GMAIL.COM", 50, 200, 25, sf::Color::White);
+    txtEmail            = TextUtils::CreateText(font, "adhirramjiawan0@gmail.com", 50, 200, 25, sf::Color::White);
 
     bufferSfxEatReverse.loadFromFile("eat_reverse.ogg");
     soundSfxEatReverse.setBuffer(bufferSfxEatReverse);

@@ -4,7 +4,7 @@
 ExitScene::ExitScene(sf::Font* font)
 {
 	this->SetName("MainMenu.Exit");
-	txtAreYouSure = TextUtils::CreateText(font, "ARE YOU SURE YOU WANT TO EXIT?", 30, 100, 20, sf::Color::Red);
+	txtAreYouSure = TextUtils::CreateText(font, "Are you sure you want to exit ?", 50, 150, 25, sf::Color::Red);
 
 	bufferSfxEat.loadFromFile("eat.ogg");
 	bufferSfxEatReverse.loadFromFile("eat_reverse.ogg");
