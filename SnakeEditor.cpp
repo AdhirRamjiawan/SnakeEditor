@@ -2,27 +2,8 @@
 //
 
 #include "SnakeEditor.h"
-#include "Animations/SpriteAnimator.h"
-#include "Animations/GameOver/DyingSnakeAnimator.h"
-#include "Scenes/GameOver/GameOverScene.h"
-#include "Scenes/Game/GameScene.h"
-#include "Scenes/Splash/SplashScene.h"
-#include "Scenes/MainMenu/MainMenuScene.h"
-#include "Scenes/MainMenu/Credits/CreditsScene.h"
-#include "Scenes/MainMenu/Exit/ExitScene.h"
-#include "Scenes/Scene.h"
-#include "Scenes/SceneManager.h"
-
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-
-#include <vector>
-
-using namespace std;
 
 sf::Font font;
-
-
 const int gameWidth = 520;
 const int gameHeight = 400;
 const float snakeMoveWait = 3.f;
@@ -40,7 +21,7 @@ int main()
 
     if (!font.loadFromFile("gaming.ttf"))
     {
-        cout << "cannot find gaming.ttf" << endl;
+        std::cout << "cannot find gaming.ttf" << std::endl;
         exit(0);
     }
     srand(time(NULL));
