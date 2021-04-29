@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 
 class CreditsScene : public Scene 
 {
@@ -20,4 +21,9 @@ private:
 	sf::Text *txtCreatedByValue;
 	sf::Text *txtCreatedYear;
 	sf::Text* txtEmail;
+
+	sf::SoundBuffer bufferSfxEat;
+	sf::SoundBuffer bufferSfxEatReverse;
+	sf::Sound soundSfxEat;
+	sf::Sound soundSfxEatReverse;
 };

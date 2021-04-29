@@ -10,6 +10,9 @@ CreditsScene::CreditsScene(sf::Font *font)
     txtCreatedByValue   = TextUtils::CreateText(font, "ADHIR RAMJIAWAN", 50, 100, 25, sf::Color::White);
     txtCreatedYear      = TextUtils::CreateText(font, "2021", 50, 150, 25, sf::Color::White);
     txtEmail            = TextUtils::CreateText(font, "ADHIRRAMJIAWAN0@GMAIL.COM", 50, 200, 25, sf::Color::White);
+
+    bufferSfxEatReverse.loadFromFile("eat_reverse.ogg");
+    soundSfxEatReverse.setBuffer(bufferSfxEatReverse);
 }
 
 void CreditsScene::Update()
@@ -32,6 +35,7 @@ void CreditsScene::HandleInput()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
+        soundSfxEatReverse.play();
         SceneManager::GetInstance()->SetCurrentScene("MainMenu");
     }
 }
