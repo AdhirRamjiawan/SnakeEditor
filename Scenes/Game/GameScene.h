@@ -49,6 +49,8 @@ private:
 	const float sprAppleOffset = 5.f;
 
 
-	sf::SoundBuffer buffer;
-	sf::Sound sound;
+	sf::SoundBuffer bufferMusic;
+	sf::SoundBuffer bufferSfxEat;
+	sf::Sound soundMusic;
+	sf::Sound soundSfxEat;
 };

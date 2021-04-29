@@ -21,8 +21,10 @@ GameScene::GameScene(float gameWidth, float gameHeight)
     for (int i = 0; i < this->gameHeight; i += snakeBlockSize)
         yGridPositions.push_back(i);
 
-    buffer.loadFromFile("game_scene.ogg");
-    sound.setBuffer(buffer);
+    bufferMusic.loadFromFile("game_scene.ogg");
+    bufferSfxEat.loadFromFile("eat.ogg");
+    soundMusic.setBuffer(bufferMusic);
+    soundSfxEat.setBuffer(bufferSfxEat);
 
 }
 
@@ -51,16 +53,16 @@ void GameScene::Reset()
 
 void GameScene::Update()
 {
-    if (this->sound.getStatus() != sf::SoundSource::Status::Playing)
+    if (this->soundMusic.getStatus() != sf::SoundSource::Status::Playing)
     {
-        this->sound.setVolume(100);
-        this->sound.setLoop(true);
-        this->sound.play();
+        this->soundMusic.setVolume(100);
+        this->soundMusic.setLoop(true);
+        this->soundMusic.play();
     }
 
     if (this->snakeCollided)
     {
-        this->sound.stop();
+        this->soundMusic.stop();
         SceneManager::GetInstance()->SetCurrentScene("GameOver");
         return;
     }
@@ -202,6 +204,8 @@ void GameScene::handleTargetHit()
 
         //cout << "target hit, next target position: x-" << targetX << ", y-" << targetY << endl;
         snakeLength++;
+
+        this->soundSfxEat.play();
     }
 }
 
