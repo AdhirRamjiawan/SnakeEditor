@@ -37,6 +37,7 @@ TODO:
 	- Implement scene stacks for Scene Manager especially for GUI driven scenes like Main menu
 	- Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
 	- Remove setFrameRateLimit from Draw scene calls.
+	- Create a sound repository for commonly used music and sound effects that can be used accross scenes
 
 
 BUGS:

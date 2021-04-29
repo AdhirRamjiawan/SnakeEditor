@@ -5,6 +5,7 @@
 #include "../../SceneManager.h"
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class ExitScene : public Scene
 {
@@ -18,5 +19,10 @@ public:
 
 private:
 	sf::Text *txtAreYouSure;
+
+	sf::SoundBuffer bufferSfxEat;
+	sf::SoundBuffer bufferSfxEatReverse;
+	sf::Sound soundSfxEat;
+	sf::Sound soundSfxEatReverse;
 };
 

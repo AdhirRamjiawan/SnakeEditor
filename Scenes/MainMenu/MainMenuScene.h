@@ -5,6 +5,7 @@
 #include "../Utils/SpriteUtils.h"
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class MainMenuScene : public Scene
 {
@@ -24,4 +25,9 @@ private:
 	sf::Text *txtOptions;
 	sf::Text *txtExit;
 	int menuPointer = 0;
+
+	sf::SoundBuffer bufferSfxEat;
+	sf::SoundBuffer bufferSfxEatReverse;
+	sf::Sound soundSfxEat;
+	sf::Sound soundSfxEatReverse;
 };

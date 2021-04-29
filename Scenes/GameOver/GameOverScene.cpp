@@ -26,6 +26,8 @@ GameOverScene::GameOverScene(sf::Font font, float gameWidth, float gameHeight)
     txtGameOverInstructions.setStyle(sf::Text::Regular);
 
     dyingSnakeAnimation = new DyingSnakeAnimator();
+
+
 }
 
 void GameOverScene::Update()

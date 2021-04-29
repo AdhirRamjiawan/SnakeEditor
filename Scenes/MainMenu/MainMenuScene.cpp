@@ -12,6 +12,12 @@ MainMenuScene::MainMenuScene(sf::Font *font)
 	this->txtCredits =	TextUtils::CreateText(font, "CREDITS",		150, 150, 30, sf::Color::White);
 	this->txtOptions =	TextUtils::CreateText(font, "OPTIONS",		150, 200, 30, sf::Color::White);
 	this->txtExit =		TextUtils::CreateText(font, "EXIT",			150, 250, 30, sf::Color::White);
+
+
+	bufferSfxEat.loadFromFile("eat.ogg");
+	bufferSfxEatReverse.loadFromFile("eat_reverse.ogg");
+	soundSfxEat.setBuffer(bufferSfxEat);
+	soundSfxEatReverse.setBuffer(bufferSfxEatReverse);
 }
 
 MainMenuScene::~MainMenuScene()
@@ -50,6 +56,7 @@ void MainMenuScene::HandleInput()
 
 		menuPointer--;
 		sprApple->move(0, -50);
+		soundSfxEat.play();
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
@@ -58,9 +65,11 @@ void MainMenuScene::HandleInput()
 
 		menuPointer++;
 		sprApple->move(0, 50);
+		soundSfxEat.play();
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 	{
+		soundSfxEat.play();
 		if (menuPointer == 0)
 		{
 			SceneManager::GetInstance()->SetCurrentScene("Game");
@@ -76,7 +85,6 @@ void MainMenuScene::HandleInput()
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
-		
 	}
 	sf::sleep(sf::milliseconds(5));
 }
