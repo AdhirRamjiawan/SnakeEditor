@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 
 #include <vector>
 
@@ -46,4 +47,8 @@ private:
 	
 	const float snakeBlockSize = 15.f;
 	const float sprAppleOffset = 5.f;
+
+
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
 };
