@@ -22,7 +22,12 @@ void Scene::Draw(sf::RenderWindow* window)
 {
 }
 
-void Scene::HandleInput(sf::Event *event)
+void Scene::HandleEvent(sf::Event* event)
+{
+
+}
+
+void Scene::HandleInput()
 {
 }
 

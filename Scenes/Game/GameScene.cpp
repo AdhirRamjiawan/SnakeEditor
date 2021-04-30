@@ -102,7 +102,7 @@ void GameScene::Update()
 
 }
 
-void GameScene::HandleInput(sf::Event* event)
+void GameScene::HandleInput()
 {
     // THERE'S A BUG THAT ALLOWS YOU TO COLLIDE THE
     // SNAKE WITH ITSELF. YOU JUST NEED TO PRESS
@@ -159,11 +159,6 @@ void GameScene::HandleInput(sf::Event* event)
         sf::sleep(sf::milliseconds(100));
     }
 
-    if (DevConsole->IsActive)
-    {
-        DevConsole->HandleInput(event);
-    }
-
 }
 
 void GameScene::Draw(sf::RenderWindow *window)
@@ -190,6 +185,18 @@ void GameScene::Draw(sf::RenderWindow *window)
     }
 
     window->display();
+}
+
+void GameScene::HandleEvent(sf::Event* event)
+{
+    if (DevConsole->IsActive)
+    {
+        DevConsole->HandleInput(event);
+    }
+    else
+    {
+        DevConsole->ResetBuffers();
+    }
 }
 
 

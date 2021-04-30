@@ -15,7 +15,8 @@ public:
 	void Update();
 	void Draw(sf::RenderWindow* window);
 	void Reset();
-	void HandleInput(sf::Event* event);
+	void HandleEvent(sf::Event* event);
+	void HandleInput();
 
 private:
 	sf::Text *txtAreYouSure;

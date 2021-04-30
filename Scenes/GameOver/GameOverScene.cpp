@@ -57,7 +57,11 @@ void GameOverScene::Draw(sf::RenderWindow* window)
     window->display();
 }
 
-void GameOverScene::HandleInput(sf::Event* event)
+void GameOverScene::HandleEvent(sf::Event* event)
+{
+}
+
+void GameOverScene::HandleInput()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
     {

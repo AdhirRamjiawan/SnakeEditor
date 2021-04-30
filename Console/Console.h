@@ -8,6 +8,7 @@ public:
 	Console(sf::Font* font, float gameWidth, float gameHeight);
 	~Console();
 	void Reset();
+	void ResetBuffers();
 	void Update();
 	void Draw(sf::RenderWindow* window);
 	void HandleInput(sf::Event* event);

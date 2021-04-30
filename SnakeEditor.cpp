@@ -51,10 +51,10 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            sceneManager->GetCurrentScene()->HandleInput(&event);
+            sceneManager->GetCurrentScene()->HandleEvent(&event);
         }
 
-        sceneManager->GetCurrentScene()->HandleInput(&event);
+        sceneManager->GetCurrentScene()->HandleInput();
         sceneManager->GetCurrentScene()->Update();
         sceneManager->GetCurrentScene()->Draw(&window);
     }

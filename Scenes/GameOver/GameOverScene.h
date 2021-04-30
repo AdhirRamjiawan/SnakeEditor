@@ -14,7 +14,8 @@ public:
 	~GameOverScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);
-	void HandleInput(sf::Event* event);
+	void HandleEvent(sf::Event* event);
+	void HandleInput();
 	sf::Text txtGameOver;
 	sf::Text txtGameOverInstructions;
 

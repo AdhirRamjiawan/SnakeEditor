@@ -8,14 +8,14 @@ Console::Console(sf::Font *font, float gameWidth, float gameHeight)
 	consoleBox = new sf::RectangleShape(sf::Vector2f(gameWidth, consoleBoxBottom));
 	consoleBox->setFillColor(sf::Color(0, 0, 255, 200));
 
-	stringBuffer = ">";
-
 	currentLine = new sf::Text();
 	currentLine->setString(stringBuffer);
 	currentLine->setFillColor(sf::Color::Yellow);
 	currentLine->setFont(*font);
 	currentLine->setCharacterSize(textSize);
-	currentLine->setPosition(5, consoleBoxBottom - textSize);
+	currentLine->setPosition(5, consoleBoxBottom - textSize - 5);
+
+	ResetBuffers();
 }
 
 Console::~Console()
@@ -24,6 +24,13 @@ Console::~Console()
 
 void Console::Reset()
 {
+	ResetBuffers();
+}
+
+void Console::ResetBuffers()
+{
+	charBuffer = 0x0;
+	stringBuffer = ">";
 }
 
 void Console::Update()

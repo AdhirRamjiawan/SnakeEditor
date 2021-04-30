@@ -33,7 +33,11 @@ void ExitScene::Reset()
 {
 }
 
-void ExitScene::HandleInput(sf::Event* event)
+void ExitScene::HandleEvent(sf::Event* event)
+{
+}
+
+void ExitScene::HandleInput()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
