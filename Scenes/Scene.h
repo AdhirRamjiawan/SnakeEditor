@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include "../Console/Console.h"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -12,9 +14,10 @@ public:
 	virtual void Update();
 	virtual void Draw(sf::RenderWindow* window);
 	virtual void Reset();
-	virtual void HandleInput();
+	virtual void HandleInput(sf::Event* event);
 	std::string GetName();
 	void SetName(std::string name);
+	Console* DevConsole;
 
 private:
 	std::string sceneName;

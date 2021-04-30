@@ -47,7 +47,7 @@ void MainMenuScene::Reset()
 {
 }
 
-void MainMenuScene::HandleInput()
+void MainMenuScene::HandleInput(sf::Event* event)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{

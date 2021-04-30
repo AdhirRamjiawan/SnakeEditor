@@ -15,7 +15,7 @@ public:
 	void Update();
 	void Draw(sf::RenderWindow* window);
 	void Reset();
-	void HandleInput();
+	void HandleInput(sf::Event* event);
 
 private:
 	sf::Texture spriteSheet;

@@ -25,24 +25,23 @@ int main()
         exit(0);
     }
     srand(time(NULL));
-
+    
     SceneManager *sceneManager = SceneManager::GetInstance();
     sceneManager->AddScene(new SplashScene(&font));
     sceneManager->AddScene(new MainMenuScene(&font));
     sceneManager->AddScene(new CreditsScene(&font));
     sceneManager->AddScene(new ExitScene(&font));
-    sceneManager->AddScene(new GameScene(gameWidth, gameHeight));
+    sceneManager->AddScene(new GameScene(&font, gameWidth, gameHeight));
     sceneManager->AddScene(new GameOverScene(font, gameWidth, gameHeight));
 
     sceneManager->SetCurrentScene("Splash");
 
-    sf::Clock clock;
     window.setFramerateLimit(10);
 
     // run the program as long as the window is open
     while (window.isOpen())
     {
-        sf::Time deltaTime = clock.restart();
+        window.setKeyRepeatEnabled(false);
 
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
@@ -51,9 +50,11 @@ int main()
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+
+            sceneManager->GetCurrentScene()->HandleInput(&event);
         }
 
-        sceneManager->GetCurrentScene()->HandleInput();
+        sceneManager->GetCurrentScene()->HandleInput(&event);
         sceneManager->GetCurrentScene()->Update();
         sceneManager->GetCurrentScene()->Draw(&window);
     }

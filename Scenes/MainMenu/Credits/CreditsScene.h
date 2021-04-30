@@ -14,7 +14,7 @@ public:
 	~CreditsScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);
-	void HandleInput();
+	void HandleInput(sf::Event* event);
 
 private:
 	sf::Text *txtCreatedBy;

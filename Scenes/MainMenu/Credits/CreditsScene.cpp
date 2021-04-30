@@ -31,7 +31,7 @@ void CreditsScene::Draw(sf::RenderWindow* window)
     window->display();
 }
 
-void CreditsScene::HandleInput()
+void CreditsScene::HandleInput(sf::Event* event)
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {

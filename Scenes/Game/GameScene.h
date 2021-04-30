@@ -5,6 +5,8 @@
 #include "../Scene.h"
 #include "../SceneManager.h"
 
+#include "../Console/Console.h"
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
@@ -14,11 +16,11 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(float gameWidth, float gameHeight);
+	GameScene(sf::Font* font, float gameWidth, float gameHeight);
 	~GameScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);
-	void HandleInput();
+	void HandleInput(sf::Event* event);
 	void Reset();
 
 private:
@@ -34,6 +36,7 @@ private:
 	float snakeVerticalSpeed = 0;
 	float snakeMoveWaitCount = 0;
 
+	bool gamePaused = false;
 	bool snakeCollided = false;
 	bool displayGridEnabled = true;
 	float gameWidth = 0;

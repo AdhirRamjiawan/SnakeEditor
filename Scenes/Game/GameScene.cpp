@@ -2,7 +2,7 @@
 #include "GameScene.h"
 #include "../../Utils/SpriteUtils.h"
 
-GameScene::GameScene(float gameWidth, float gameHeight)
+GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
 {
     this->SetName("Game");
     this->gameWidth = gameWidth;
@@ -25,6 +25,8 @@ GameScene::GameScene(float gameWidth, float gameHeight)
     bufferSfxEat.loadFromFile("eat.ogg");
     soundMusic.setBuffer(bufferMusic);
     soundSfxEat.setBuffer(bufferSfxEat);
+
+    DevConsole = new Console(font, gameWidth, gameHeight);
 
 }
 
@@ -49,10 +51,20 @@ void GameScene::Reset()
     displayGridEnabled = true;
 
     snakeCollided = false;
+
+    DevConsole->Reset();
 }
 
 void GameScene::Update()
 {
+    if (DevConsole->IsActive)
+    {
+        DevConsole->Update();
+    }
+
+    if (gamePaused)
+        return;
+
     if (this->soundMusic.getStatus() != sf::SoundSource::Status::Playing)
     {
         this->soundMusic.setVolume(100);
@@ -87,9 +99,10 @@ void GameScene::Update()
     {
         this->snakeBlocks->erase(this->snakeBlocks->begin(), this->snakeBlocks->begin() + 1);
     }
+
 }
 
-void GameScene::HandleInput()
+void GameScene::HandleInput(sf::Event* event)
 {
     // THERE'S A BUG THAT ALLOWS YOU TO COLLIDE THE
     // SNAKE WITH ITSELF. YOU JUST NEED TO PRESS
@@ -139,6 +152,18 @@ void GameScene::HandleInput()
         displayGridEnabled = !displayGridEnabled;
         //cout << "Toggled grid display" << endl;
     }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tilde))
+    {
+        DevConsole->IsActive = !DevConsole->IsActive;
+        gamePaused = DevConsole->IsActive;
+        sf::sleep(sf::milliseconds(100));
+    }
+
+    if (DevConsole->IsActive)
+    {
+        DevConsole->HandleInput(event);
+    }
+
 }
 
 void GameScene::Draw(sf::RenderWindow *window)
@@ -158,6 +183,11 @@ void GameScene::Draw(sf::RenderWindow *window)
 
     window->draw(*this->snakeHead);
     window->draw(*this->sprApple);
+
+    if (DevConsole->IsActive)
+    {
+        DevConsole->Draw(window);
+    }
 
     window->display();
 }

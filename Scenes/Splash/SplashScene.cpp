@@ -42,7 +42,7 @@ void SplashScene::Reset()
 {
 }
 
-void SplashScene::HandleInput()
+void SplashScene::HandleInput(sf::Event *event)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 	{
