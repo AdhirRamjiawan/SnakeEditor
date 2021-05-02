@@ -57,4 +57,5 @@ private:
 	sf::SoundBuffer bufferSfxEat;
 	sf::Sound soundMusic;
 	sf::Sound soundSfxEat;
+	float soundMusicVolume = 50.f;
 };

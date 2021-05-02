@@ -38,7 +38,6 @@ TODO:
 	- Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
 	- Remove setFrameRateLimit from Draw scene calls.
 	- Create a sound repository for commonly used music and sound effects that can be used accross scenes
-	- Add dev console for debugging and controlling of game for changing levels or adding items to game
 	- For the dev console add the ability to run debug scripts.
 
 

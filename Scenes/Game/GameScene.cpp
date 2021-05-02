@@ -67,7 +67,7 @@ void GameScene::Update()
 
     if (this->soundMusic.getStatus() != sf::SoundSource::Status::Playing)
     {
-        this->soundMusic.setVolume(100);
+        this->soundMusic.setVolume(soundMusicVolume);
         this->soundMusic.setLoop(true);
         this->soundMusic.play();
     }
