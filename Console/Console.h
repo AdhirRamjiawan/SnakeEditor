@@ -3,10 +3,12 @@
 #include "../Utils/TextUtils.h"
 #include <SFML/Graphics.hpp>
 
+#include <functional>
+
 class Console
 {
 public:
-	Console(sf::Font* font, float gameWidth, float gameHeight);
+	Console(sf::Font* font, float gameWidth, float gameHeight, std::function<void(std::string*)> processCommandFunc);
 	~Console();
 	void Reset();
 	void ResetBuffers();
@@ -30,5 +32,6 @@ private:
 	sf::Clock clock;
 	sf::Time lastTimeKeyPressed;
 	std::vector<std::string> previousCommands;
-	void ProcessCommand();
+
+	std::function<void(std::string*)> processCommandFunc;
 };

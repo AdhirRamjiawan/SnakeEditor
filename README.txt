@@ -39,6 +39,7 @@ TODO:
 	- Remove setFrameRateLimit from Draw scene calls.
 	- Create a sound repository for commonly used music and sound effects that can be used accross scenes
 	- For the dev console add the ability to run debug scripts.
+	- For the dev console add debug log functions that's called from the various scenes but shown on the console instead of std out.
 
 
 BUGS:

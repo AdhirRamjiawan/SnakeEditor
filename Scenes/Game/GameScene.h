@@ -11,6 +11,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 
+#include <functional>
 #include <vector>
 
 class GameScene : public Scene
@@ -28,6 +29,7 @@ private:
 	void displayGrid(sf::RenderWindow* window);
 	void handleTargetHit();
 	void handleCollision();
+	static void processCommand(std::string* command);
 
 	float snakeLength = 2.0f;
 	int snakeHorizontalDirection = 1;

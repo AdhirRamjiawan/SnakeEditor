@@ -1,11 +1,12 @@
 #include "Console.h"
 
-Console::Console(sf::Font *font, float gameWidth, float gameHeight)
+Console::Console(sf::Font *font, float gameWidth, float gameHeight, std::function<void(std::string*)> processCommandFunc)
 {
 	this->font = font;
 	this->gameHeight = gameHeight;
 	this->gameWidth = gameWidth;
-	
+	this->processCommandFunc = processCommandFunc;
+
 	IsActive = false;
 
 	consoleBoxBottom = (gameHeight / 2.f);
@@ -75,29 +76,18 @@ void Console::HandleInput(sf::Event *event)
 
 		if (charBuffer == 13) //Carriage-return
 		{
-			ProcessCommand();
+			stringBuffer = stringBuffer.substr(0, stringBuffer.size() - 1); /* Remove the Carriage return */
+			
+			this->processCommandFunc(&stringBuffer);
+
+			if (previousCommands.size() > 8)
+			{
+				previousCommands.erase(previousCommands.begin(), previousCommands.begin() + 1);
+			}
+
+			previousCommands.push_back(stringBuffer);
+			stringBuffer = "";
 		}
-	}
-}
 
-void Console::ProcessCommand()
-{
-	stringBuffer = stringBuffer.substr(0, stringBuffer.size() - 1); /* Remove the Carriage return */
-
-	if (stringBuffer == "exit")
-	{
-		exit(0);
 	}
-	else
-	{
-		stringBuffer = "unknown command '" + stringBuffer + "'";
-	}
-
-	if (previousCommands.size() > 8)
-	{
-		previousCommands.erase(previousCommands.begin(), previousCommands.begin() + 1);
-	}
-	
-	previousCommands.push_back(stringBuffer);
-	stringBuffer = "";
 }

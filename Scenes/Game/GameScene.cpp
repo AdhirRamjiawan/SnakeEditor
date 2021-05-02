@@ -26,8 +26,7 @@ GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
     soundMusic.setBuffer(bufferMusic);
     soundSfxEat.setBuffer(bufferSfxEat);
 
-    DevConsole = new Console(font, gameWidth, gameHeight);
-
+    DevConsole = new Console(font, gameWidth, gameHeight, processCommand);
 }
 
 GameScene::~GameScene()
@@ -272,5 +271,17 @@ void GameScene::handleCollision()
             snakeCollided = true;
             break;
         }
+    }
+}
+
+void GameScene::processCommand(std::string* command)
+{
+    if (*command == "exit")
+    {
+        exit(0);
+    }
+    else
+    {
+        //stringBuffer = "unknown command '" + stringBuffer + "'";
     }
 }
