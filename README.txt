@@ -1,8 +1,8 @@
-  __________________
-/|					|
-/|	SNAKE EDITOR	|
-/|__________________|
-/////////////////////
+  ________________
+/|                |
+/|	SNAKE EDITOR  |
+/|________________|
+//////////////////
 
 BUILD INSTRUCTIONS:
 	- For windows run "Windows/resource_compile.bat" to generate resource object file needed for icon
@@ -17,6 +17,7 @@ TODO:
 	- Create menu scene (Load game, Options)
 	- Add mongoose enemies
 	- Add moving targets
+	- Add item to make snake go in turbo boost mode for a few seconds.
 	- Add rocks that snake will collide with
 	- Add underground holes where snake can hide in. Enter tunnel and exit tunnel. In between enter and exit nothing can touch snake
 	- Create a level file format
@@ -39,7 +40,6 @@ TODO:
 	- Remove setFrameRateLimit from Draw scene calls.
 	- Create a sound repository for commonly used music and sound effects that can be used accross scenes
 	- For the dev console add the ability to run debug scripts.
-
 
 BUGS:
 	- Can't exit game once in game.
