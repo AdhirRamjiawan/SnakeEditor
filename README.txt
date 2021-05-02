@@ -40,6 +40,7 @@ TODO:
 	- Remove setFrameRateLimit from Draw scene calls.
 	- Create a sound repository for commonly used music and sound effects that can be used accross scenes
 	- For the dev console add the ability to run debug scripts.
+	- For the dev console add ability to backspace on current line
 
 BUGS:
 	- Can't exit game once in game.

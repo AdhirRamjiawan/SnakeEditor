@@ -149,7 +149,7 @@ void GameScene::HandleInput()
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
     {
         displayGridEnabled = !displayGridEnabled;
-        //cout << "Toggled grid display" << endl;
+        DevConsole->Log("Toggled grid display");
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tilde))
     {
