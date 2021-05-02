@@ -2,6 +2,10 @@
 
 Console::Console(sf::Font *font, float gameWidth, float gameHeight)
 {
+	this->font = font;
+	this->gameHeight = gameHeight;
+	this->gameWidth = gameWidth;
+	
 	IsActive = false;
 
 	consoleBoxBottom = (gameHeight / 2.f);
@@ -15,7 +19,7 @@ Console::Console(sf::Font *font, float gameWidth, float gameHeight)
 	currentLine->setCharacterSize(textSize);
 	currentLine->setPosition(5, consoleBoxBottom - textSize - 5);
 
-	ResetBuffers();
+	Reset();
 }
 
 Console::~Console()
@@ -30,23 +34,25 @@ void Console::Reset()
 void Console::ResetBuffers()
 {
 	charBuffer = 0x0;
-	stringBuffer = ">";
+	stringBuffer = "";
 }
 
 void Console::Update()
 {
 	currentLine->setString(stringBuffer);
-
-	
 }
 
 void Console::Draw(sf::RenderWindow *window)
 {
 	window->draw(*consoleBox);
+	float cmdPosition = 0;
+
+	for (auto cmd: previousCommands)
+	{
+		window->draw(*TextUtils::CreateText(font, cmd, 0, textSize * cmdPosition++, textSize, sf::Color::Yellow));
+	}
 
 	window->draw(*currentLine);
-
-	//window->display();
 }
 
 void Console::HandleInput(sf::Event *event)
@@ -66,5 +72,32 @@ void Console::HandleInput(sf::Event *event)
 		stringBuffer += charBuffer;
 		
 		lastTimeKeyPressed = currentTime;
+
+		if (charBuffer == 13) //Carriage-return
+		{
+			ProcessCommand();
+		}
 	}
+}
+
+void Console::ProcessCommand()
+{
+	stringBuffer = stringBuffer.substr(0, stringBuffer.size() - 1); /* Remove the Carriage return */
+
+	if (stringBuffer == "exit")
+	{
+		exit(0);
+	}
+	else
+	{
+		stringBuffer = "unknown command '" + stringBuffer + "'";
+	}
+
+	if (previousCommands.size() > 8)
+	{
+		previousCommands.erase(previousCommands.begin(), previousCommands.begin() + 1);
+	}
+	
+	previousCommands.push_back(stringBuffer);
+	stringBuffer = "";
 }
