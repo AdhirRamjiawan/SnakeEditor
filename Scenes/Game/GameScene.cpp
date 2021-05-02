@@ -242,6 +242,7 @@ void GameScene::handleTargetHit()
         snakeLength++;
 
         this->soundSfxEat.play();
+        this->DevConsole->Log("Target hit!");
     }
 }
 

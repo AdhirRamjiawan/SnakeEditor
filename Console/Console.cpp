@@ -80,14 +80,25 @@ void Console::HandleInput(sf::Event *event)
 			
 			this->processCommandFunc(&stringBuffer);
 
-			if (previousCommands.size() > 8)
-			{
-				previousCommands.erase(previousCommands.begin(), previousCommands.begin() + 1);
-			}
-
-			previousCommands.push_back(stringBuffer);
-			stringBuffer = "";
+			postProcessCommandFunc();
 		}
 
 	}
+}
+
+void Console::Log(std::string message)
+{
+	stringBuffer = "DEBUG: " + message;
+	postProcessCommandFunc();
+}
+
+void Console::postProcessCommandFunc()
+{
+	if (previousCommands.size() > 8)
+	{
+		previousCommands.erase(previousCommands.begin(), previousCommands.begin() + 1);
+	}
+
+	previousCommands.push_back(stringBuffer);
+	stringBuffer = "";
 }

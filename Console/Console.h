@@ -15,6 +15,7 @@ public:
 	void Update();
 	void Draw(sf::RenderWindow* window);
 	void HandleInput(sf::Event* event);
+	void Log(std::string message);
 	bool IsActive;
 
 private:
@@ -34,4 +35,5 @@ private:
 	std::vector<std::string> previousCommands;
 
 	std::function<void(std::string*)> processCommandFunc;
+	void postProcessCommandFunc();
 };
