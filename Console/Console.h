@@ -16,7 +16,7 @@ public:
 	void Draw(sf::RenderWindow* window);
 	void HandleInput(sf::Event* event);
 	void Log(std::string message);
-	bool IsActive;
+	bool IsActive = false;
 
 private:
 	sf::RectangleShape *consoleBox;
@@ -24,12 +24,12 @@ private:
 	sf::Font* font;
 
 	float textSize = 20.f;
-	float consoleBoxBottom = 0;
-	float gameHeight;
-	float gameWidth;
+	float consoleBoxBottom = 0.f;
+	float gameHeight = 0.f;
+	float gameWidth = 0.f;
 
-	std::string stringBuffer;
-	sf::Uint32 charBuffer;
+	std::string stringBuffer = "";
+	sf::Uint32 charBuffer = 0;
 	sf::Clock clock;
 	sf::Time lastTimeKeyPressed;
 	std::vector<std::string> previousCommands;

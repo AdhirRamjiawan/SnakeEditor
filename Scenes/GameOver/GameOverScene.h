@@ -22,6 +22,7 @@ public:
 private:
 	GameScene* gameScene;
 	sf::Font font;
-	float gameWidth, gameHeight;
+	float gameWidth = 0.f;
+	float gameHeight = 0.f;
 	DyingSnakeAnimator *dyingSnakeAnimation;
 };

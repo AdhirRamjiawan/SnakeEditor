@@ -76,4 +76,6 @@ void GameOverScene::HandleInput()
 
 GameOverScene::~GameOverScene()
 {
+    delete gameScene;
+    delete dyingSnakeAnimation;
 }

@@ -14,6 +14,7 @@ ExitScene::ExitScene(sf::Font* font)
 
 ExitScene::~ExitScene()
 {
+	delete txtAreYouSure;
 }
 
 void ExitScene::Update()

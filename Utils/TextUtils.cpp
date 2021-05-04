@@ -1,7 +1,7 @@
 
 #include "TextUtils.h"
 
-sf::Text *TextUtils::CreateText(sf::Font *font, std::string text, float posX, float posY, float size, sf::Color color)
+sf::Text *TextUtils::CreateText(sf::Font *font, std::string text, float posX, float posY, unsigned int size, sf::Color color)
 {
 	sf::Text *txt = new sf::Text();
 

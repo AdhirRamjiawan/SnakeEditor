@@ -44,5 +44,4 @@ DyingSnakeAnimator::DyingSnakeAnimator()
 
 DyingSnakeAnimator::~DyingSnakeAnimator()
 {
-	SpriteAnimator::~SpriteAnimator();
 }

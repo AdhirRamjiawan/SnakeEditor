@@ -17,7 +17,7 @@ Console::Console(sf::Font *font, float gameWidth, float gameHeight, std::functio
 	currentLine->setString(stringBuffer);
 	currentLine->setFillColor(sf::Color::Yellow);
 	currentLine->setFont(*font);
-	currentLine->setCharacterSize(textSize);
+	currentLine->setCharacterSize((unsigned int)textSize);
 	currentLine->setPosition(5, consoleBoxBottom - textSize - 5);
 
 	Reset();
@@ -25,6 +25,9 @@ Console::Console(sf::Font *font, float gameWidth, float gameHeight, std::functio
 
 Console::~Console()
 {
+	delete consoleBox;
+	delete currentLine;
+	delete font;
 }
 
 void Console::Reset()

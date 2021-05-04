@@ -14,8 +14,9 @@ public:
 	sf::Texture SpriteSheet;
 	void UpdateAnimation();
 	void DrawAnimation(sf::RenderWindow *window);
+
 protected:
-	float FrameCount;
-	float FrameIndex;
-	float FrameSpeed;
+	float FrameCount = 0.f;
+	int FrameIndex = 0;
+	float FrameSpeed = 0.f;
 };

@@ -9,8 +9,6 @@
 class Scene
 {
 public:
-	Scene();
-	~Scene();
 	virtual void Update();
 	virtual void Draw(sf::RenderWindow* window);
 	virtual void Reset();

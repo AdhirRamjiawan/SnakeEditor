@@ -3,6 +3,7 @@
 
 SceneManager::SceneManager()
 {
+	currentScene = NULL;
 }
 
 SceneManager* SceneManager::GetInstance()
@@ -15,6 +16,11 @@ SceneManager* SceneManager::GetInstance()
 
 SceneManager::~SceneManager()
 {
+	for (auto scene : scenes)
+		delete scene;
+
+	delete currentScene;
+	delete instance;
 }
 
 void SceneManager::AddScene(Scene* scene)

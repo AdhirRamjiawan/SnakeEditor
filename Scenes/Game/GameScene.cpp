@@ -15,10 +15,10 @@ GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
 
     this->snakeHead->setFillColor(sf::Color::Green);
 
-    for (int i = 0; i < this->gameWidth; i += snakeBlockSize)
+    for (int i = 0; i < this->gameWidth; i += int(snakeBlockSize))
         xGridPositions.push_back(i);
 
-    for (int i = 0; i < this->gameHeight; i += snakeBlockSize)
+    for (int i = 0; i < this->gameHeight; i += int(snakeBlockSize))
         yGridPositions.push_back(i);
 
     bufferMusic.loadFromFile("game_scene.ogg");
@@ -31,7 +31,9 @@ GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
 
 GameScene::~GameScene()
 {
-	Scene::~Scene();
+    delete snakeHead;
+    delete snakeBlocks;
+    delete sprApple;
 }
 
 void GameScene::Reset()
@@ -203,18 +205,18 @@ void GameScene::displayGrid(sf::RenderWindow* window)
 {
     sf::Color lineColour(100, 100, 100, 255);
 
-    for (int i = 0; i < this->gameWidth; i += this->snakeBlockSize)
+    for (int i = 0; i < this->gameWidth; i += int(this->snakeBlockSize))
     {
         sf::RectangleShape line(sf::Vector2f(1, gameHeight));
-        line.setPosition(sf::Vector2f(i, 0));
+        line.setPosition(sf::Vector2f(i, float(0)));
         line.setFillColor(lineColour);
         window->draw(line);
     }
 
-    for (int i = 0; i < gameHeight; i += snakeBlockSize)
+    for (int i = 0; i < gameHeight; i += int(snakeBlockSize))
     {
         sf::RectangleShape line(sf::Vector2f(gameWidth, 1));
-        line.setPosition(sf::Vector2f(0, i));
+        line.setPosition(sf::Vector2f(0, float(i)));
         line.setFillColor(lineColour);
         window->draw(line);
     }
@@ -222,8 +224,8 @@ void GameScene::displayGrid(sf::RenderWindow* window)
 
 void GameScene::handleTargetHit()
 {
-    int xGridPositionsLength = this->gameWidth / this->snakeBlockSize;
-    int yGridPositionsLength = this->gameHeight / this->snakeBlockSize;
+    int xGridPositionsLength = int(this->gameWidth / this->snakeBlockSize);
+    int yGridPositionsLength = int(this->gameHeight / this->snakeBlockSize);
 
     if (this->snakeHead->getPosition().x == (this->sprApple->getPosition().x + sprAppleOffset) &&
         this->snakeHead->getPosition().y == (this->sprApple->getPosition().y + sprAppleOffset))

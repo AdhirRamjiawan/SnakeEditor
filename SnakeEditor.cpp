@@ -24,7 +24,7 @@ int main()
         std::cout << "cannot find gaming.ttf" << std::endl;
         exit(0);
     }
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     
     SceneManager *sceneManager = SceneManager::GetInstance();
     sceneManager->AddScene(new SplashScene(&font));
@@ -58,5 +58,8 @@ int main()
         sceneManager->GetCurrentScene()->Update();
         sceneManager->GetCurrentScene()->Draw(&window);
     }
+
+    delete sceneManager;
+
 	return 0;
 }

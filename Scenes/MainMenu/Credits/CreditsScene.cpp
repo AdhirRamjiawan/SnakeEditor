@@ -46,4 +46,8 @@ void CreditsScene::HandleInput()
 
 CreditsScene::~CreditsScene()
 {
+    delete txtCreatedBy;
+    delete txtCreatedByValue;
+    delete txtCreatedYear;
+    delete txtEmail;
 }

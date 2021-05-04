@@ -20,6 +20,9 @@ SplashScene::SplashScene(sf::Font *font)
 
 SplashScene::~SplashScene()
 {
+	delete txtTitle;
+	delete txtCreatedBy;
+	delete txtContinue;
 }
 
 void SplashScene::Update()

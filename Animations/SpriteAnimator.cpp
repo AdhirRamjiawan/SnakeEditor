@@ -3,7 +3,6 @@
 
 SpriteAnimator::SpriteAnimator()
 {
-
 }
 
 void SpriteAnimator::UpdateAnimation()
@@ -29,7 +28,4 @@ void SpriteAnimator::DrawAnimation(sf::RenderWindow* window)
 
 SpriteAnimator::~SpriteAnimator()
 {
-	this->Sprites.clear();
-	this->Sprites.~vector();
-	this->SpriteSheet.~Texture();
 }
