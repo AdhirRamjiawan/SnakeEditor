@@ -1,2 +1,3 @@
 out
 .vs
+cppcheck_results.txt
