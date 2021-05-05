@@ -10,6 +10,12 @@ BUILD INSTRUCTIONS:
 
 
 TODO:
+	- Game modes:
+		+ Longest snake challenge
+		+ Fastest snake challenge
+		+ Spit 'em up challenge
+		+ Story mode ???
+
 	- Scenes:
 		+ Leaderboard
 		+ After a good few seconds of showing the splash screen change to show AI game play for a 20 seconds or so.
