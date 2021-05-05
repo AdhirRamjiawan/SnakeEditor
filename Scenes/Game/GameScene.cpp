@@ -49,8 +49,7 @@ void GameScene::Reset()
     snakeVerticalSpeed = 0;
     snakeMoveWaitCount = 0;
 
-    displayGridEnabled = true;
-
+    DisplayGridEnabled = false;
     snakeCollided = false;
 
     DevConsole->Reset();
@@ -148,11 +147,6 @@ void GameScene::HandleInput()
             snakeVerticalSpeed = snakeBlockSize;
         }
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
-    {
-        displayGridEnabled = !displayGridEnabled;
-        DevConsole->Log("Toggled grid display");
-    }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tilde))
     {
         DevConsole->IsActive = !DevConsole->IsActive;
@@ -167,7 +161,7 @@ void GameScene::Draw(sf::RenderWindow *window)
     window->setFramerateLimit(10);
     window->clear(sf::Color::Black);
 
-    if (displayGridEnabled)
+    if (DisplayGridEnabled)
     {
         displayGrid(window);
     }
@@ -279,9 +273,31 @@ void GameScene::handleCollision()
 
 void GameScene::processCommand(std::string* command)
 {
+    GameScene *scene = (GameScene*)SceneManager::GetInstance()->GetCurrentScene();
+
     if (*command == "exit")
     {
         exit(0);
+    }
+    else if (*command == "cls")
+    {
+        scene->DevConsole->Reset();
+    }
+    else if (*command == "grid")
+    {
+        scene->DisplayGridEnabled = !scene->DisplayGridEnabled;
+    }
+    else if (*command == "reset")
+    {
+        scene->Reset();
+    }
+    else if (*command == "god")
+    {
+        // add god mode flag to continue on collision.
+    }
+    else if (*command == "stat")
+    {
+        // display a list of currently enabled flags
     }
     else
     {

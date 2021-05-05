@@ -24,6 +24,7 @@ public:
 	void HandleEvent(sf::Event* event);
 	void HandleInput();
 	void Reset();
+	bool DisplayGridEnabled = false;
 
 private:
 	void displayGrid(sf::RenderWindow* window);
@@ -41,7 +42,6 @@ private:
 
 	bool gamePaused = false;
 	bool snakeCollided = false;
-	bool displayGridEnabled = true;
 	float gameWidth = 0;
 	float gameHeight = 0;
 	

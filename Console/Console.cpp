@@ -33,6 +33,7 @@ Console::~Console()
 void Console::Reset()
 {
 	ResetBuffers();
+	previousCommands.clear();
 }
 
 void Console::ResetBuffers()

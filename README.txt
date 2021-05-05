@@ -30,6 +30,8 @@ TODO:
 
 	- Assets:
 		+ Better graphics
+		+ Better font
+		+ 
 
 	- Editor:
 		+ THE ACTUAL EDITOR?!!!
@@ -48,8 +50,15 @@ TODO:
 		+ Create a sound repository for commonly used music and sound effects that can be used accross scenes
 	
 	- Console:
-		+ For the dev console add the ability to run debug scripts.
-		+ For the dev console add ability to backspace on current line 
+		+ Add the ability to run debug scripts.
+		+ Add ability to backspace on current line
+		+ Add god mode flag
+		+ Add stat mode to show all enabled flags
+		+ Handle backspace control character
+		+ Spawn new apple specific location
+		+ Spawn new apple random location
+		+ Remove all apples
+		+ Spawn new entity x random/specific location
 
 	- Distribution:
 		+ Create game distribution scripts to pack assets
