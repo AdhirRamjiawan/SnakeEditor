@@ -37,7 +37,7 @@ TODO:
 	- Assets:
 		+ Better graphics
 		+ Better font
-		+ 
+		+ Draw assets for snake itself
 
 	- Editor:
 		+ THE ACTUAL EDITOR?!!!
@@ -65,6 +65,9 @@ TODO:
 		+ Spawn new apple random location
 		+ Remove all apples
 		+ Spawn new entity x random/specific location
+		+ Set snake speed
+		+ Exit Game scene
+		+ Load level
 
 	- Distribution:
 		+ Create game distribution scripts to pack assets
