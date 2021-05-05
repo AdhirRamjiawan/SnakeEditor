@@ -16,7 +16,7 @@ public:
 	virtual void HandleInput();
 	std::string GetName();
 	void SetName(std::string name);
-	Console* DevConsole;
+	Console* DevConsole = NULL;
 
 private:
 	std::string sceneName;

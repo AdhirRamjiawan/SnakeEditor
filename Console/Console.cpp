@@ -53,7 +53,7 @@ void Console::Draw(sf::RenderWindow *window)
 
 	for (auto cmd: previousCommands)
 	{
-		window->draw(*TextUtils::CreateText(font, cmd, 0, textSize * cmdPosition++, textSize, sf::Color::Yellow));
+		window->draw(*TextUtils::CreateText(font, cmd, 0, textSize * cmdPosition++, (unsigned int)textSize, sf::Color::Yellow));
 	}
 
 	window->draw(*currentLine);

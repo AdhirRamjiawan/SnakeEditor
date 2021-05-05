@@ -208,7 +208,7 @@ void GameScene::displayGrid(sf::RenderWindow* window)
     for (int i = 0; i < this->gameWidth; i += int(this->snakeBlockSize))
     {
         sf::RectangleShape line(sf::Vector2f(1, gameHeight));
-        line.setPosition(sf::Vector2f(i, float(0)));
+        line.setPosition(float(i), float(0));
         line.setFillColor(lineColour);
         window->draw(line);
     }
