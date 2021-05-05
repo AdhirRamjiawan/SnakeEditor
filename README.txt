@@ -54,6 +54,7 @@ TODO:
 		+ Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
 		+ Remove setFrameRateLimit from Draw scene calls.
 		+ Create a sound repository for commonly used music and sound effects that can be used accross scenes
+		+ Record in game video
 	
 	- Console:
 		+ Add the ability to run debug scripts.
@@ -68,6 +69,7 @@ TODO:
 		+ Set snake speed
 		+ Exit Game scene
 		+ Load level
+		+ record in game video with command
 
 	- Distribution:
 		+ Create game distribution scripts to pack assets
