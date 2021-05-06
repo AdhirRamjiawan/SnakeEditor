@@ -4,7 +4,7 @@
 
 #include "../Scene.h"
 #include "../SceneManager.h"
-
+#include "../State/GameState.h"
 #include "../Console/Console.h"
 
 #include <SFML/Graphics.hpp>
@@ -60,4 +60,7 @@ private:
 	sf::Sound soundMusic;
 	sf::Sound soundSfxEat;
 	float soundMusicVolume = 50.f;
+
+	GameState* gameState;
+	sf::Text* txtScore;
 };

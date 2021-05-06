@@ -8,6 +8,9 @@ GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
     this->gameWidth = gameWidth;
     this->gameHeight = gameHeight;
 
+    this->gameState = new GameState();
+
+    this->txtScore = TextUtils::CreateText(font, "Score: 0", 10.f, 10.f, 20, sf::Color::White);
     this->sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
     this->snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
 
@@ -34,6 +37,7 @@ GameScene::~GameScene()
     delete snakeHead;
     delete snakeBlocks;
     delete sprApple;
+    delete gameState;
 }
 
 void GameScene::Reset()
@@ -52,6 +56,7 @@ void GameScene::Reset()
     DisplayGridEnabled = false;
     snakeCollided = false;
 
+    gameState->Reset();
     DevConsole->Reset();
 }
 
@@ -173,6 +178,7 @@ void GameScene::Draw(sf::RenderWindow *window)
 
     window->draw(*this->snakeHead);
     window->draw(*this->sprApple);
+    window->draw(*this->txtScore);
 
     if (DevConsole->IsActive)
     {
@@ -239,6 +245,9 @@ void GameScene::handleTargetHit()
 
         this->soundSfxEat.play();
         this->DevConsole->Log("Target hit!");
+
+        gameState->PlayerScore += 1;
+        txtScore->setString("Score: " + std::to_string(gameState->PlayerScore));
     }
 }
 

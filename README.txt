@@ -27,8 +27,8 @@ TODO:
 		+ Add item to make snake go in turbo boost mode for a few seconds.
 		+ Add item to make snake go in turbo boost mode for a few seconds.
 		+ Add rocks that snake will collide with although these shouldn't make you get a game over but rather delay in hurt
+		
 		+ Add underground holes where snake can hide in. Enter tunnel and exit tunnel. In between enter and exit nothing can touch snake
-		+ Create a scoring system. Mabye time alive and length of snake?
 		+ snake must spit out apples too to fight enemies and bosses
 		+ Add multiple levels
 		+ Add boss levels
