@@ -33,6 +33,7 @@ int main()
     sceneManager->AddScene(new ExitScene(&font));
     sceneManager->AddScene(new GameScene(&font, gameWidth, gameHeight));
     sceneManager->AddScene(new GameOverScene(font, gameWidth, gameHeight));
+    sceneManager->AddScene(new LeaderboardScene(&font));
 
     sceneManager->SetCurrentScene("Splash");
 

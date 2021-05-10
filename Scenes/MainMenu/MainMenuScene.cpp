@@ -6,12 +6,12 @@ MainMenuScene::MainMenuScene(sf::Font *font)
 {
 	this->SetName("MainMenu");
 
-	this->sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, 100, 50, 0.4f, 0.4f);
-	this->txtNewGame =	TextUtils::CreateText(font, "NEW GAME",		150, 50, 30, sf::Color::White);
-	this->txtLoadGame = TextUtils::CreateText(font, "LOAD GAME",	150, 100, 30, sf::Color::White);
-	this->txtCredits =	TextUtils::CreateText(font, "CREDITS",		150, 150, 30, sf::Color::White);
-	this->txtOptions =	TextUtils::CreateText(font, "OPTIONS",		150, 200, 30, sf::Color::White);
-	this->txtExit =		TextUtils::CreateText(font, "EXIT",			150, 250, 30, sf::Color::White);
+	this->sprApple    = SpriteUtils::CreateSprite("apple.png", 100, 100, 100, 50, 0.4f, 0.4f);
+	this->txtNewGame  =	TextUtils::CreateText(font, "NEW GAME",  150, 50, 30, sf::Color::White);
+	this->txtLoadGame = TextUtils::CreateText(font, "LOAD GAME", 150, 100, 30, sf::Color::White);
+	this->txtCredits  =	TextUtils::CreateText(font, "CREDITS",   150, 150, 30, sf::Color::White);
+	this->txtOptions  =	TextUtils::CreateText(font, "OPTIONS",   150, 200, 30, sf::Color::White);
+	this->txtExit     =	TextUtils::CreateText(font, "EXIT",      150, 250, 30, sf::Color::White);
 
 
 	bufferSfxEat.loadFromFile("eat.ogg");

@@ -18,6 +18,9 @@ std::vector<std::string> LeaderboardUtils::Load()
 		temp += data[i];
 	}
 
+	entries.push_back(temp);
+	temp = "";
+
 	return entries;
 }
 

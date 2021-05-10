@@ -12,6 +12,7 @@
 #include "Scenes/MainMenu/MainMenuScene.h"
 #include "Scenes/MainMenu/Credits/CreditsScene.h"
 #include "Scenes/MainMenu/Exit/ExitScene.h"
+#include "Scenes/Leaderboard/LeaderboardScene.h"
 #include "Scenes/Scene.h"
 #include "Scenes/SceneManager.h"
 

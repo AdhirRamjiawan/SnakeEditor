@@ -6,7 +6,13 @@ std::string FileUtils::ReadFile(std::string filePath)
 	std::ifstream inFile;
 
 	inFile.open(filePath);
-	inFile >> fileContents;
+	char ch;
+
+	while (inFile.get(ch))
+	{
+		fileContents += ch;
+	}
+
 	inFile.close();
 
 	return fileContents;

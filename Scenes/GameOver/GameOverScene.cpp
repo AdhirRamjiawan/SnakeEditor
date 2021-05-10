@@ -70,7 +70,8 @@ void GameOverScene::HandleInput()
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        SceneManager::GetInstance()->SetCurrentScene("MainMenu");
+        //SceneManager::GetInstance()->SetCurrentScene("MainMenu");
+        SceneManager::GetInstance()->SetCurrentScene("Leaderboard");
     }
 }
 
