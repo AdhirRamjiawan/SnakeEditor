@@ -7,6 +7,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include "../Shaders/FadeOutShader.h"
+#include "../Shaders/StandardShader.h"
+
 class GameOverScene : public Scene 
 {
 public:
@@ -25,4 +28,5 @@ private:
 	float gameWidth = 0.f;
 	float gameHeight = 0.f;
 	DyingSnakeAnimator *dyingSnakeAnimation;
+	sf::RenderStates renderStates;
 };

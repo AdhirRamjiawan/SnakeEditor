@@ -20,6 +20,7 @@ TODO:
 		+ Leaderboard
 		+ After a good few seconds of showing the splash screen change to show AI game play for a 20 seconds or so.
 		+ Multiple levels
+		+ Main meun Options: Set music level, set music on/off, set sfx level, set music on/off
 
 	- Mechanics
 		+ Add mongoose enemies

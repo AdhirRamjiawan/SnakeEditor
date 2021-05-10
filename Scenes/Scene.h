@@ -18,6 +18,9 @@ public:
 	void SetName(std::string name);
 	Console* DevConsole;
 
+protected:
+	sf::Shader currentShader;
+
 private:
 	std::string sceneName;
 };

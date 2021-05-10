@@ -27,7 +27,8 @@ GameOverScene::GameOverScene(sf::Font font, float gameWidth, float gameHeight)
 
     dyingSnakeAnimation = new DyingSnakeAnimator();
 
-
+    currentShader.loadFromMemory(SHADER_STANDARD, sf::Shader::Fragment);
+    renderStates.shader = &currentShader;
 }
 
 void GameOverScene::Update()
@@ -49,8 +50,8 @@ void GameOverScene::Draw(sf::RenderWindow* window)
     window->setFramerateLimit(60);
     window->clear(sf::Color::Black);
 
-    window->draw(txtGameOver);
-    window->draw(txtGameOverInstructions);
+    window->draw(txtGameOver, renderStates);
+    window->draw(txtGameOverInstructions, renderStates);
 
     dyingSnakeAnimation->DrawAnimation(window);
 
@@ -70,7 +71,8 @@ void GameOverScene::HandleInput()
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        SceneManager::GetInstance()->SetCurrentScene("MainMenu");
+        currentShader.loadFromMemory(SHADER_FADE_OUT, sf::Shader::Fragment);
+        //SceneManager::GetInstance()->SetCurrentScene("MainMenu");
     }
 }
 
