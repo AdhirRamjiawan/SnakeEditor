@@ -79,6 +79,7 @@ TODO:
 		+ Add dev docs to source control
 		+ Add libs to source control
 		+ Make SFML lib dependencies more relative for CI/CD builds etc.
+		+ Add all scene names to a header file called SceneNames with #defines "SCENE_"
 
 BUGS:
 	- Can't exit game once in game.
