@@ -58,6 +58,8 @@ void GameScene::Reset()
 
     gameState->Reset();
     DevConsole->Reset();
+
+    txtScore->setString("Score: " + std::to_string(gameState->PlayerScore));
 }
 
 void GameScene::Update()
