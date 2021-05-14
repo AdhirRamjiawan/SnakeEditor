@@ -83,6 +83,7 @@ void MainMenuScene::HandleInput()
 		if (menuPointer == 0)
 		{
 			SceneManager::GetInstance()->SetCurrentScene("Game");
+			SceneManager::GetInstance()->GetCurrentScene()->Reset();
 		}
 		else if (menuPointer == 2)
 		{
