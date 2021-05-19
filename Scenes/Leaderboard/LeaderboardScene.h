@@ -17,7 +17,7 @@
 class LeaderboardScene : public Scene
 {
 public:
-	LeaderboardScene(sf::Font* font);
+	LeaderboardScene(std::shared_ptr<sf::Font> font);
 	~LeaderboardScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);

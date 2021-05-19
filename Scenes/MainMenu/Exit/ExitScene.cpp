@@ -1,7 +1,7 @@
 
 #include "ExitScene.h"
 
-ExitScene::ExitScene(sf::Font* font)
+ExitScene::ExitScene(std::shared_ptr<sf::Font> font)
 {
 	this->SetName("MainMenu.Exit");
 	txtAreYouSure = TextUtils::CreateText(font, "Are you sure you want to exit ?", 50, 150, 25, sf::Color::Red);

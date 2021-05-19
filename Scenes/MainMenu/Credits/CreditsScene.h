@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "../../Scene.h"
 #include "../../SceneManager.h"
 #include "../../../Utils/TextUtils.h"
@@ -10,7 +12,7 @@
 class CreditsScene : public Scene 
 {
 public:
-	CreditsScene(sf::Font *font);
+	CreditsScene(std::shared_ptr<sf::Font> font);
 	~CreditsScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);

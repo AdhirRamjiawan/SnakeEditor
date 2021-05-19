@@ -1,16 +1,14 @@
 #include "Console.h"
 
-Console::Console(sf::Font *font, float gameWidth, float gameHeight, std::function<void(std::string*)> processCommandFunc)
+Console::Console(std::shared_ptr<sf::Font> font, std::function<void(std::string*)> processCommandFunc)
 {
 	this->font = font;
-	this->gameHeight = gameHeight;
-	this->gameWidth = gameWidth;
 	this->processCommandFunc = processCommandFunc;
 
 	IsActive = false;
 
-	consoleBoxBottom = (gameHeight / 2.f);
-	consoleBox = new sf::RectangleShape(sf::Vector2f(gameWidth, consoleBoxBottom));
+	consoleBoxBottom = (GameState::GameHeight / 2.f);
+	consoleBox = new sf::RectangleShape(sf::Vector2f(GameState::GameWidth, consoleBoxBottom));
 	consoleBox->setFillColor(sf::Color(0, 0, 255, 200));
 
 	currentLine = new sf::Text();
@@ -27,7 +25,6 @@ Console::~Console()
 {
 	delete consoleBox;
 	delete currentLine;
-	delete font;
 }
 
 void Console::Reset()

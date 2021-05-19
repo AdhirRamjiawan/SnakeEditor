@@ -2,7 +2,7 @@
 #include "CreditsScene.h"
 
 
-CreditsScene::CreditsScene(sf::Font *font)
+CreditsScene::CreditsScene(std::shared_ptr<sf::Font> font)
 {
     this->SetName("MainMenu.Credits");
 

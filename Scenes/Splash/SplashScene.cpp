@@ -2,7 +2,7 @@
 #include "SplashScene.h"
 
 
-SplashScene::SplashScene(sf::Font *font)
+SplashScene::SplashScene(std::shared_ptr<sf::Font> font)
 {
 	this->SetName("Splash");
 	this->spriteSheet.loadFromFile("snake.png");

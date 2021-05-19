@@ -1,7 +1,7 @@
 
 #include "LeaderboardScene.h"
 
-LeaderboardScene::LeaderboardScene(sf::Font *font)
+LeaderboardScene::LeaderboardScene(std::shared_ptr<sf::Font> font)
 {
 	this->SetName("Leaderboard");
 

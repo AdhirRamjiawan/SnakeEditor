@@ -10,6 +10,8 @@ public:
 	~GameState();
 	void Reset();
 	int PlayerScore = 0;
+	static const int GameWidth = 520;
+	static const int GameHeight = 400;
 
 private:
 	

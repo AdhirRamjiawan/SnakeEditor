@@ -2,12 +2,9 @@
 #include "GameScene.h"
 #include "../../Utils/SpriteUtils.h"
 
-GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
+GameScene::GameScene(std::shared_ptr<sf::Font> font)
 {
     this->SetName("Game");
-    this->gameWidth = gameWidth;
-    this->gameHeight = gameHeight;
-
     this->gameState = new GameState();
 
     this->txtScore = TextUtils::CreateText(font, "Score: 0", 10.f, 10.f, 20, sf::Color::White);
@@ -18,10 +15,10 @@ GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
 
     this->snakeHead->setFillColor(sf::Color::Green);
 
-    for (int i = 0; i < this->gameWidth; i += int(snakeBlockSize))
+    for (int i = 0; i < GameState::GameWidth; i += int(snakeBlockSize))
         xGridPositions.push_back(i);
 
-    for (int i = 0; i < this->gameHeight; i += int(snakeBlockSize))
+    for (int i = 0; i < GameState::GameHeight; i += int(snakeBlockSize))
         yGridPositions.push_back(i);
 
     bufferMusic.loadFromFile("game_scene.ogg");
@@ -29,7 +26,7 @@ GameScene::GameScene(sf::Font *font, float gameWidth, float gameHeight)
     soundMusic.setBuffer(bufferMusic);
     soundSfxEat.setBuffer(bufferSfxEat);
 
-    DevConsole = new Console(font, gameWidth, gameHeight, processCommand);
+    DevConsole = new Console(font, processCommand);
 }
 
 GameScene::~GameScene()
@@ -207,17 +204,17 @@ void GameScene::displayGrid(sf::RenderWindow* window)
 {
     sf::Color lineColour(100, 100, 100, 255);
 
-    for (int i = 0; i < this->gameWidth; i += int(this->snakeBlockSize))
+    for (int i = 0; i < GameState::GameWidth; i += int(this->snakeBlockSize))
     {
-        sf::RectangleShape line(sf::Vector2f(1, gameHeight));
+        sf::RectangleShape line(sf::Vector2f(1, GameState::GameHeight));
         line.setPosition(float(i), float(0));
         line.setFillColor(lineColour);
         window->draw(line);
     }
 
-    for (int i = 0; i < gameHeight; i += int(snakeBlockSize))
+    for (int i = 0; i < GameState::GameHeight; i += int(snakeBlockSize))
     {
-        sf::RectangleShape line(sf::Vector2f(gameWidth, 1));
+        sf::RectangleShape line(sf::Vector2f(GameState::GameWidth, 1));
         line.setPosition(sf::Vector2f(0, float(i)));
         line.setFillColor(lineColour);
         window->draw(line);
@@ -226,8 +223,8 @@ void GameScene::displayGrid(sf::RenderWindow* window)
 
 void GameScene::handleTargetHit()
 {
-    int xGridPositionsLength = int(this->gameWidth / this->snakeBlockSize);
-    int yGridPositionsLength = int(this->gameHeight / this->snakeBlockSize);
+    int xGridPositionsLength = int(GameState::GameWidth / this->snakeBlockSize);
+    int yGridPositionsLength = int(GameState::GameHeight / this->snakeBlockSize);
 
     if (this->snakeHead->getPosition().x == (this->sprApple->getPosition().x + sprAppleOffset) &&
         this->snakeHead->getPosition().y == (this->sprApple->getPosition().y + sprAppleOffset))
@@ -256,8 +253,8 @@ void GameScene::handleTargetHit()
 void GameScene::handleCollision()
 {
     /* Check collision with borders */
-    if (this->snakeHead->getPosition().x < 0 || this->snakeHead->getPosition().x > gameWidth ||
-        this->snakeHead->getPosition().y < 0 || this->snakeHead->getPosition().y > gameHeight)
+    if (this->snakeHead->getPosition().x < 0 || this->snakeHead->getPosition().x > GameState::GameWidth ||
+        this->snakeHead->getPosition().y < 0 || this->snakeHead->getPosition().y > GameState::GameHeight)
     {
         //cout << "snake bumped its head!!!" << endl;
         snakeCollided = true;

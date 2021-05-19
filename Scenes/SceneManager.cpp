@@ -1,40 +1,49 @@
 
 #include "SceneManager.h"
 
-SceneManager::SceneManager()
+SceneManager::SceneManager(void* a)
 {
-	currentScene = NULL;
+	if (a == NULL)
+	{
+		std::cout << "SceneManager should not be instantiated outside of this class." << std::endl;
+		exit(0);
+	}
+
+	font = std::make_shared<sf::Font>();
+	if (!font->loadFromFile("gaming.ttf"))
+	{
+		std::cout << "cannot find gaming.ttf" << std::endl;
+		exit(0);
+	}
+	
+	this->scenes.push_back(std::make_unique<SplashScene>(font));
+	this->scenes.push_back(std::make_unique<CreditsScene>(font));
+	this->scenes.push_back(std::make_unique<MainMenuScene>(font));
+	this->scenes.push_back(std::make_unique<ExitScene>(font));
+	this->scenes.push_back(std::make_unique<GameScene>(font));
+	this->scenes.push_back(std::make_unique<GameOverScene>(font));
+	this->scenes.push_back(std::make_unique<LeaderboardScene>(font));
 }
 
 SceneManager* SceneManager::GetInstance()
 {
 	if (!instance)
-		instance = new SceneManager();
-
-	return instance;
+		instance = std::make_unique<SceneManager>((void *)123);
+	return instance.get();
 }
 
 SceneManager::~SceneManager()
 {
-	for (auto scene : scenes)
-		delete scene;
-
-	delete currentScene;
-	delete instance;
-}
-
-void SceneManager::AddScene(Scene* scene)
-{
-	this->scenes.push_back(scene);
+	delete this->currentScene;
 }
 
 void SceneManager::SetCurrentScene(std::string sceneName)
 {
-	for (auto s : this->scenes)
+	for (auto &scene : this->scenes)
 	{
-		if (s->GetName() == sceneName)
+		if (scene->GetName() == sceneName)
 		{
-			this->currentScene = s;
+			this->currentScene = scene.get();
 			break;
 		}
 	}

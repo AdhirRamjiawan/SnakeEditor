@@ -1,3 +1,4 @@
+#pragma once
 
 #include "../Scene.h"
 #include "../SceneManager.h"
@@ -10,7 +11,7 @@
 class MainMenuScene : public Scene
 {
 public:
-	MainMenuScene(sf::Font *font);
+	MainMenuScene(std::shared_ptr<sf::Font> font);
 	~MainMenuScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);

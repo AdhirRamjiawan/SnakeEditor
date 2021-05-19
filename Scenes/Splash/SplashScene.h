@@ -10,7 +10,7 @@
 class SplashScene : public Scene
 {
 public:
-	SplashScene(sf::Font *font);
+	SplashScene(std::shared_ptr<sf::Font> font);
 	~SplashScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);

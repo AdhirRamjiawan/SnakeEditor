@@ -17,7 +17,7 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(sf::Font* font, float gameWidth, float gameHeight);
+	GameScene(std::shared_ptr<sf::Font> font);
 	~GameScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);

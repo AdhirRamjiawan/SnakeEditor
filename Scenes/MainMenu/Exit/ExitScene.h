@@ -10,7 +10,7 @@
 class ExitScene : public Scene
 {
 public:
-	ExitScene(sf::Font *font);
+	ExitScene(std::shared_ptr<sf::Font> font);
 	~ExitScene();
 	void Update();
 	void Draw(sf::RenderWindow* window);

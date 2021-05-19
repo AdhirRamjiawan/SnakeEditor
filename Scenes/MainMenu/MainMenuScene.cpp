@@ -2,7 +2,7 @@
 #include "MainMenuScene.h"
 
 
-MainMenuScene::MainMenuScene(sf::Font *font)
+MainMenuScene::MainMenuScene(std::shared_ptr<sf::Font> font)
 {
 	this->SetName("MainMenu");
 
