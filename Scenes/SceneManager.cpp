@@ -34,7 +34,6 @@ SceneManager* SceneManager::GetInstance()
 
 SceneManager::~SceneManager()
 {
-	delete this->currentScene;
 }
 
 void SceneManager::SetCurrentScene(std::string sceneName)
