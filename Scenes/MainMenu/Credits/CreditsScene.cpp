@@ -39,7 +39,7 @@ void CreditsScene::HandleInput()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        soundSfxEatReverse.play();
+        SoundUtils::PlaySfx(&soundSfxEatReverse);
         SceneManager::GetInstance()->SetCurrentScene("MainMenu");
     }
 }

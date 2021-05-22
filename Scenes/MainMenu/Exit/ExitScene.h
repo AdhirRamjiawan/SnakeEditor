@@ -2,6 +2,8 @@
 
 #include "../../Scene.h"
 #include "../../../Utils/TextUtils.h"
+#include "../../../Utils/SoundUtils.h"
+#include "../../../State/GameState.h"
 #include "../../SceneManager.h"
 
 #include <SFML/Graphics.hpp>

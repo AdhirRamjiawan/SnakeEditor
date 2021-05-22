@@ -42,12 +42,12 @@ void ExitScene::HandleInput()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
-		soundSfxEatReverse.play();
+		SoundUtils::PlaySfx(&soundSfxEatReverse);
 		SceneManager::GetInstance()->SetCurrentScene("MainMenu");
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 	{
-		soundSfxEat.play();
+		SoundUtils::PlaySfx(&soundSfxEat);
 		sf::sleep(sf::milliseconds(500));
 		exit(0);
 	}

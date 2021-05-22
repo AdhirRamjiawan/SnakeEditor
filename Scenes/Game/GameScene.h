@@ -6,6 +6,7 @@
 #include "../SceneManager.h"
 #include "../State/GameState.h"
 #include "../Console/Console.h"
+#include "../Utils/SoundUtils.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -24,7 +25,6 @@ public:
 	void HandleEvent(sf::Event* event);
 	void HandleInput();
 	void Reset();
-	bool DisplayGridEnabled = false;
 
 private:
 	void displayGrid(sf::RenderWindow* window);

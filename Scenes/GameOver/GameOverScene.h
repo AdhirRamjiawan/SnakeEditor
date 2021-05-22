@@ -3,6 +3,7 @@
 
 #include "../Scene.h"
 #include "../SceneManager.h"
+#include "../Utils/SoundUtils.h"
 #include "../../Animations/GameOver/DyingSnakeAnimator.h"
 
 #include <SFML/Graphics.hpp>

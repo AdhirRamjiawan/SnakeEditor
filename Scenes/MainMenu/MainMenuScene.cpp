@@ -66,7 +66,8 @@ void MainMenuScene::HandleInput()
 
 		menuPointer--;
 		sprApple->move(0, -50);
-		soundSfxEat.play();
+
+		SoundUtils::PlaySfx(&soundSfxEat);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
@@ -75,11 +76,13 @@ void MainMenuScene::HandleInput()
 
 		menuPointer++;
 		sprApple->move(0, 50);
-		soundSfxEat.play();
+
+		SoundUtils::PlaySfx(&soundSfxEat);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 	{
-		soundSfxEat.play();
+		SoundUtils::PlaySfx(&soundSfxEat);
+
 		if (menuPointer == 0)
 		{
 			SceneManager::GetInstance()->SetCurrentScene("Game");

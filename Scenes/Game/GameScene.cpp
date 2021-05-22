@@ -50,7 +50,6 @@ void GameScene::Reset()
     snakeVerticalSpeed = 0;
     snakeMoveWaitCount = 0;
 
-    DisplayGridEnabled = false;
     snakeCollided = false;
 
     gameState->Reset();
@@ -73,12 +72,12 @@ void GameScene::Update()
     {
         this->soundMusic.setVolume(soundMusicVolume);
         this->soundMusic.setLoop(true);
-        this->soundMusic.play();
+        SoundUtils::PlayMusic(&soundMusic);
     }
 
     if (this->snakeCollided)
     {
-        this->soundMusic.stop();
+        SoundUtils::StopMusic(&soundMusic);
         SceneManager::GetInstance()->SetCurrentScene("GameOver");
         return;
     }
@@ -165,7 +164,7 @@ void GameScene::Draw(sf::RenderWindow *window)
     window->setFramerateLimit(10);
     window->clear(sf::Color::Black);
 
-    if (DisplayGridEnabled)
+    if (GameState::Config.DisplayGrid)
     {
         displayGrid(window);
     }
@@ -242,7 +241,8 @@ void GameScene::handleTargetHit()
         //cout << "target hit, next target position: x-" << targetX << ", y-" << targetY << endl;
         snakeLength++;
 
-        this->soundSfxEat.play();
+        SoundUtils::PlaySfx(&soundSfxEat);
+        
         this->DevConsole->Log("Target hit!");
 
         gameState->PlayerScore += 1;
@@ -293,7 +293,7 @@ void GameScene::processCommand(std::string* command)
     }
     else if (*command == "grid")
     {
-        scene->DisplayGridEnabled = !scene->DisplayGridEnabled;
+        GameState::Config.DisplayGrid = !GameState::Config.DisplayGrid;
     }
     else if (*command == "reset")
     {

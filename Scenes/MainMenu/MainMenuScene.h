@@ -4,6 +4,8 @@
 #include "../SceneManager.h"
 #include "../Utils/TextUtils.h"
 #include "../Utils/SpriteUtils.h"
+#include "../Utils/SoundUtils.h"
+#include "../State/GameState.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
