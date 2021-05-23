@@ -12,6 +12,7 @@ GameScene::GameScene(std::shared_ptr<sf::Font> font)
     this->sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
     this->snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
     this->txtLevelName = TextUtils::CreateText(font, currentLevel.Name, 300.f, 10.f, 20, sf::Color::Red);
+    this->txtLevelComplete = TextUtils::CreateText(font, "Level Complete!", 50.f, 200.f, 50, sf::Color::Green);
 
     snakeBlocks = new std::vector<sf::RectangleShape>();
 
@@ -68,7 +69,7 @@ void GameScene::Update()
         DevConsole->Update();
     }
 
-    if (gamePaused)
+    if (gamePaused || gameState->LevelComplete)
         return;
 
     if (this->soundMusic.getStatus() != sf::SoundSource::Status::Playing)
@@ -182,6 +183,11 @@ void GameScene::Draw(sf::RenderWindow *window)
     window->draw(*this->txtScore);
     window->draw(*this->txtLevelName);
 
+    if (gameState->LevelComplete)
+    {
+        window->draw(*this->txtLevelComplete);
+    }
+
     if (DevConsole->IsActive)
     {
         DevConsole->Draw(window);
@@ -251,6 +257,11 @@ void GameScene::handleTargetHit()
 
         gameState->PlayerScore += 1;
         txtScore->setString("Score: " + std::to_string(gameState->PlayerScore));
+
+        if (gameState->PlayerScore >= currentLevel.WinCount)
+        {
+            gameState->LevelComplete = true;
+        }
     }
 }
 

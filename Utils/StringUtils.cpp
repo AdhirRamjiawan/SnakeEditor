@@ -55,8 +55,16 @@ std::string StringUtils::Replace(std::string string1, std::string string2, std::
 
 	if (index > 0)
 	{
-		// split these into multiple lines with meaningful variable names
-		std::string temp = string1.substr(0, index - 1) + string3 + string1.substr(index + string2.size(), string1.size() - index + string2.size());
+		std::string part1 = string1.substr(0, index - 1);
+		std::string part2 = string3;
+		std::string part3 = string1.substr(index + string2.size(), string1.size() - index + string2.size());
+
+		std::string temp = part1 + part2+ part3;
+		return StringUtils::Replace(temp, string2, string3);
+	}
+	else if (index == 0)
+	{
+		std::string temp = string1.substr(string2.size(), string1.size() - string2.size());
 		return StringUtils::Replace(temp, string2, string3);
 	}
 

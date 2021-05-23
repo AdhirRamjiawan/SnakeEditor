@@ -15,6 +15,7 @@ GameState::GameState()
 void GameState::Reset()
 {
 	PlayerScore = 0;
+	LevelComplete = false;
 }
 
 GameState::~GameState()

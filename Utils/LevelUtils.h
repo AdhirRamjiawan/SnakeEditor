@@ -17,6 +17,7 @@ public:
 private:
 	static std::vector<std::string> getLevelDataEntries(std::string name);
 	static void processEntries(std::vector<std::string>* entries, LevelModel* model);
+	static int parseWin(std::string entry);
 	static PlayerModel parsePlayer(std::string entry);
 	static std::string parseName(std::string entry);
 };

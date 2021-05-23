@@ -9,4 +9,5 @@ struct PlayerModel
 struct LevelModel {
 	std::string Name;
 	struct PlayerModel Player;
+	int WinCount;
 };

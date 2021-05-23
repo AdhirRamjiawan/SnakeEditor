@@ -24,6 +24,7 @@ void LevelUtils::processEntries(std::vector<std::string> *entries, struct LevelM
 	{
 		auto nameFound = StringUtils::StartsWith(entry, "name");
 		auto playerFound = StringUtils::StartsWith(entry, "player");
+		auto winFound = StringUtils::StartsWith(entry, "win");
 
 		if (nameFound)
 		{
@@ -33,7 +34,18 @@ void LevelUtils::processEntries(std::vector<std::string> *entries, struct LevelM
 		{
 			model->Player = parsePlayer(entry);
 		}
+		else if (winFound)
+		{
+			model->WinCount = parseWin(entry);
+		}
 	}
+}
+
+int LevelUtils::parseWin(std::string entry)
+{
+	std::vector<std::string> parts = StringUtils::Split(entry, " ");
+	int result = std::stoi(parts[1]);
+	return result;
 }
 
 struct PlayerModel LevelUtils::parsePlayer(std::string entry)

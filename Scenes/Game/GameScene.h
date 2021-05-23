@@ -68,4 +68,5 @@ private:
 
 	struct LevelModel currentLevel;
 	sf::Text* txtLevelName;
+	sf::Text* txtLevelComplete;
 };
