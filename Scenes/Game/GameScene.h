@@ -7,6 +7,8 @@
 #include "../State/GameState.h"
 #include "../Console/Console.h"
 #include "../Utils/SoundUtils.h"
+#include "../Utils/LevelUtils.h"
+#include "../State/Level.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -63,4 +65,7 @@ private:
 
 	GameState* gameState;
 	sf::Text* txtScore;
+
+	struct LevelModel currentLevel;
+	sf::Text* txtLevelName;
 };

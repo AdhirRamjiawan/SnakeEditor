@@ -6,10 +6,12 @@ GameScene::GameScene(std::shared_ptr<sf::Font> font)
 {
     this->SetName("Game");
     this->gameState = new GameState();
+    currentLevel = LevelUtils::GetLevel("level1.dat");
 
     this->txtScore = TextUtils::CreateText(font, "Score: 0", 10.f, 10.f, 20, sf::Color::White);
     this->sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
     this->snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
+    this->txtLevelName = TextUtils::CreateText(font, currentLevel.Name, 300.f, 10.f, 20, sf::Color::Red);
 
     snakeBlocks = new std::vector<sf::RectangleShape>();
 
@@ -27,6 +29,7 @@ GameScene::GameScene(std::shared_ptr<sf::Font> font)
     soundSfxEat.setBuffer(bufferSfxEat);
 
     DevConsole = new Console(font, processCommand);
+    this->snakeHead->setPosition(sf::Vector2f(currentLevel.Player.PositionX, currentLevel.Player.PositionY));
 }
 
 GameScene::~GameScene()
@@ -39,7 +42,7 @@ GameScene::~GameScene()
 
 void GameScene::Reset()
 {
-    this->snakeHead->setPosition(sf::Vector2f(snakeBlockSize, snakeBlockSize));
+    this->snakeHead->setPosition(sf::Vector2f(currentLevel.Player.PositionX, currentLevel.Player.PositionY));
     this->snakeBlocks->clear();
 
     snakeLength = 2.0f;
@@ -177,6 +180,7 @@ void GameScene::Draw(sf::RenderWindow *window)
     window->draw(*this->snakeHead);
     window->draw(*this->sprApple);
     window->draw(*this->txtScore);
+    window->draw(*this->txtLevelName);
 
     if (DevConsole->IsActive)
     {
