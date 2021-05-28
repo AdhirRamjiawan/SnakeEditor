@@ -19,7 +19,6 @@ TODO:
 	- Scenes:
 		+ Leaderboard
 		+ After a good few seconds of showing the splash screen change to show AI game play for a 20 seconds or so.
-		+ Multiple levels
 
 	- Mechanics
 		+ Add mongoose enemies
@@ -30,7 +29,6 @@ TODO:
 		
 		+ Add underground holes where snake can hide in. Enter tunnel and exit tunnel. In between enter and exit nothing can touch snake
 		+ snake must spit out apples too to fight enemies and bosses
-		+ Add multiple levels
 		+ Add boss levels
 		+ Add multiple targets and when snake is able to hit these targets in quick succession keep track of a combo counter
 
@@ -44,15 +42,12 @@ TODO:
 		+ In the snake editor add in a UI designer to create text and shape elements and generate c++ code.
 
 	- Technical:
-		+ Create a level file format
 		+ Add a tile map editor
 		+ pack all game assets into a binary data format
 		+ Attempt to use smart pointers 
-		+ Look at double buffering techniques
 		+ Add shader effects: https://www.sfml-dev.org/tutorials/2.0/graphics-shader.php
 		+ Implement scene stacks for Scene Manager especially for GUI driven scenes like Main menu
 		+ Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
-		+ Remove setFrameRateLimit from Draw scene calls.
 		+ Create a sound repository for commonly used music and sound effects that can be used accross scenes
 		+ Record in game video
 		+ Add config file the game uses on startup.
