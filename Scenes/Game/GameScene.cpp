@@ -31,6 +31,8 @@ GameScene::GameScene(std::shared_ptr<sf::Font> font)
 
     DevConsole = new Console(font, processCommand);
     this->snakeHead->setPosition(sf::Vector2f(currentLevel.Player.PositionX, currentLevel.Player.PositionY));
+
+    clock = sf::Clock();
 }
 
 GameScene::~GameScene()
@@ -60,6 +62,7 @@ void GameScene::Reset()
     DevConsole->Reset();
 
     txtScore->setString("Score: " + std::to_string(gameState->PlayerScore));
+    clock.restart();
 }
 
 void GameScene::Update()
@@ -185,7 +188,22 @@ void GameScene::Draw(sf::RenderWindow *window)
 
     if (gameState->LevelComplete)
     {
-        window->draw(*this->txtLevelComplete);
+        clock.restart();
+        clockElapsed = clock.getElapsedTime();
+
+        while (true)
+        {
+            auto delta = (clock.getElapsedTime() - clockElapsed).asSeconds();
+
+            if (delta > levelLoadDelayThreshold)
+            {
+                loadLevel(++currentLevelIndex);
+                break;
+            }
+
+            window->draw(*this->txtLevelComplete);
+            window->display();
+        }
     }
 
     if (DevConsole->IsActive)
@@ -326,4 +344,11 @@ void GameScene::processCommand(std::string* command)
     {
         //stringBuffer = "unknown command '" + stringBuffer + "'";
     }
+}
+
+void GameScene::loadLevel(int levelIndex)
+{
+    currentLevel = LevelUtils::GetLevel("level" + std::to_string(levelIndex) + ".dat");
+    txtLevelName->setString(currentLevel.Name);
+    Reset();
 }

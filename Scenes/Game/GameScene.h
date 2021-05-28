@@ -33,7 +33,8 @@ private:
 	void handleTargetHit();
 	void handleCollision();
 	static void processCommand(std::string* command);
-
+	void loadLevel(int levelIndex);
+	
 	float snakeLength = 2.0f;
 	int snakeHorizontalDirection = 1;
 	int snakeVerticalDirection = 1;
@@ -69,4 +70,9 @@ private:
 	struct LevelModel currentLevel;
 	sf::Text* txtLevelName;
 	sf::Text* txtLevelComplete;
+	int currentLevelIndex = 1;
+	float levelLoadDelayThreshold = 5.0f;
+
+	sf::Clock clock;
+	sf::Time clockElapsed;
 };
