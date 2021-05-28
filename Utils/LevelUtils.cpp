@@ -20,6 +20,10 @@ struct LevelModel LevelUtils::GetLevel(std::string name)
 
 void LevelUtils::processEntries(std::vector<std::string> *entries, struct LevelModel *model)
 {
+	model->Name = "(<[ ?? LEVEL ?? ]>)";
+	model->Player = struct PlayerModel();
+	model->WinCount = 9999;
+
 	for (auto entry : *entries)
 	{
 		auto nameFound = StringUtils::StartsWith(entry, "name");
