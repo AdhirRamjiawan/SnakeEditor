@@ -78,4 +78,4 @@ TODO:
 		+ Add all scene names to a header file called SceneNames with #defines "SCENE_"
 
 BUGS:
-	- Can't exit game once in game.
+	- when level complete there's a stuttering effect

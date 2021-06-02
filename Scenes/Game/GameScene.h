@@ -75,4 +75,7 @@ private:
 
 	sf::Clock clock;
 	sf::Time clockElapsed;
+
+	sf::Text* txtQuitGame;
+	bool quitGamePromptEnabled = false;
 };

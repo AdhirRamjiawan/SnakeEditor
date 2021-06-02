@@ -8,11 +8,12 @@ GameScene::GameScene(std::shared_ptr<sf::Font> font)
     this->gameState = new GameState();
     currentLevel = LevelUtils::GetLevel("level1.dat");
 
-    this->txtScore = TextUtils::CreateText(font, "Score: 0", 10.f, 10.f, 20, sf::Color::White);
-    this->sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
-    this->snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
-    this->txtLevelName = TextUtils::CreateText(font, currentLevel.Name, 300.f, 10.f, 20, sf::Color::Red);
-    this->txtLevelComplete = TextUtils::CreateText(font, "Level Complete!", 50.f, 200.f, 50, sf::Color::Green);
+    txtScore = TextUtils::CreateText(font, "Score: 0", 10.f, 10.f, 20, sf::Color::White);
+    sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
+    snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
+    txtLevelName = TextUtils::CreateText(font, currentLevel.Name, 300.f, 10.f, 20, sf::Color::Red);
+    txtLevelComplete = TextUtils::CreateText(font, "Level Complete!", 50.f, 200.f, 50, sf::Color::Green);
+    txtQuitGame = TextUtils::CreateText(font, "Are you sure on quiting?", 70.f, 150.f, 30, sf::Color::Red);
 
     snakeBlocks = new std::vector<sf::RectangleShape>();
 
@@ -57,6 +58,7 @@ void GameScene::Reset()
     snakeMoveWaitCount = 0;
 
     snakeCollided = false;
+    quitGamePromptEnabled = false;
 
     gameState->Reset();
     DevConsole->Reset();
@@ -163,6 +165,28 @@ void GameScene::HandleInput()
         gamePaused = DevConsole->IsActive;
         sf::sleep(sf::milliseconds(100));
     }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+    {
+        if (quitGamePromptEnabled)
+        {
+            quitGamePromptEnabled = false;
+            sf::sleep(sf::milliseconds(250));
+        }
+        else
+        {
+            quitGamePromptEnabled = true;
+            sf::sleep(sf::milliseconds(250));
+        }   
+
+        gamePaused = quitGamePromptEnabled;
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
+        if (quitGamePromptEnabled)
+        {
+            SceneManager::GetInstance()->SetCurrentScene("MainMenu");
+        }
+    }
 
 }
 
@@ -181,10 +205,15 @@ void GameScene::Draw(sf::RenderWindow *window)
         window->draw(block);
     }
 
-    window->draw(*this->snakeHead);
-    window->draw(*this->sprApple);
-    window->draw(*this->txtScore);
-    window->draw(*this->txtLevelName);
+    window->draw(*snakeHead);
+    window->draw(*sprApple);
+    window->draw(*txtScore);
+    window->draw(*txtLevelName);
+
+    if (quitGamePromptEnabled)
+    {
+        window->draw(*txtQuitGame);
+    }
 
     if (gameState->LevelComplete)
     {
