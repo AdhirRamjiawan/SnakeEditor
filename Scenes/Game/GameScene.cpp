@@ -319,12 +319,12 @@ void GameScene::handleCollision()
         this->snakeHead->getPosition().y < 0 || this->snakeHead->getPosition().y > GameState::GameHeight)
     {
         //cout << "snake bumped its head!!!" << endl;
-        snakeCollided = true;
+        snakeCollided = !GameState::Config.GodMode;
         return;
     }
 
     /* vv Check collision with itself vv */
-    if (this->snakeBlocks->size() <= 2)
+    if (this->snakeBlocks->size() <= 2 || GameState::Config.GodMode)
         return;
 
     for (int i = 0; i < this->snakeBlocks->size() - 2; i++)
@@ -363,7 +363,8 @@ void GameScene::processCommand(std::string* command)
     }
     else if (*command == "god")
     {
-        // add god mode flag to continue on collision.
+        GameState::Config.GodMode = !GameState::Config.GodMode;
+        scene->DevConsole->Log("God mode: " + GameState::Config.GodMode);
     }
     else if (*command == "stat")
     {

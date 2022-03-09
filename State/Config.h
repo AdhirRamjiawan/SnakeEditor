@@ -5,6 +5,7 @@ struct ConfigModel {
 
 	// Developer config
 	bool DisplayGrid;
+	bool GodMode;
 
 	// Graphics config
 
