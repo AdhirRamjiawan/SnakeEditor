@@ -51,6 +51,7 @@ TODO:
 		+ Create a sound repository for commonly used music and sound effects that can be used accross scenes
 		+ Record in game video
 		+ Add config file the game uses on startup.
+		+ Add check and warning message when assets aren't found in executable directory.
 	
 	- Console:
 		+ Add the ability to run debug scripts.
