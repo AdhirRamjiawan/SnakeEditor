@@ -7,8 +7,8 @@ GameState::GameState()
 {
 	Reset();
 
-	GameState::Config.PlayMusic = false; // TODO: change this to true for release
-	GameState::Config.PlaySfx = false; // TODO: change this to true for release
+	GameState::Config.PlayMusic = true; // TODO: change this to true for release
+	GameState::Config.PlaySfx = true; // TODO: change this to true for release
 	GameState::Config.DisplayGrid = false;
 }
 
