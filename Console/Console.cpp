@@ -75,7 +75,7 @@ void Console::HandleInput(sf::Event *event)
 		
 		lastTimeKeyPressed = currentTime;
 
-		if (charBuffer == 13) //Carriage-return
+		if (charBuffer == 13 /* Carriage-return */)
 		{
 			stringBuffer = stringBuffer.substr(0, stringBuffer.size() - 1); /* Remove the Carriage return */
 			
@@ -83,7 +83,10 @@ void Console::HandleInput(sf::Event *event)
 
 			postProcessCommandFunc();
 		}
-
+		else if (charBuffer == 8 /* Backspace */)
+		{
+			stringBuffer = stringBuffer.substr(0, stringBuffer.size() - 2);
+		}
 	}
 }
 

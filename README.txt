@@ -55,7 +55,6 @@ TODO:
 	
 	- Console:
 		+ Add the ability to run debug scripts.
-		+ Add ability to backspace on current line
 		+ Add god mode flag
 		+ Add stat mode to show all enabled flags
 		+ Handle backspace control character
