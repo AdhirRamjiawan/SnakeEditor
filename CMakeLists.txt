@@ -28,11 +28,17 @@ add_executable (SnakeEditor "SnakeEditor.cpp" "SnakeEditor.h"
 
 include_directories(SnakeEditor "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/include")
 
-target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-main-d.lib")
-target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-system-d.lib")
-target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-window-d.lib")
-target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-graphics-d.lib")
-target_link_libraries(SnakeEditor LINK_PUBLIC "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-audio-d.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC debug "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-main-d.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC debug "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-system-d.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC debug "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-window-d.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC debug "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-graphics-d.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC debug "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-audio-d.lib")
+
+target_link_libraries(SnakeEditor LINK_PUBLIC optimized "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-main.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC optimized "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-system.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC optimized "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-window.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC optimized "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-graphics.lib")
+target_link_libraries(SnakeEditor LINK_PUBLIC optimized "C:/Users/adhir/Downloads/libs/SFML-2.5.1-windows-vc15-64-bit/SFML-2.5.1/lib/sfml-audio.lib")
 
 if (MSVC)
 target_link_options(SnakeEditor PRIVATE /SUBSYSTEM:WINDOWS)
