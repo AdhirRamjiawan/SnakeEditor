@@ -368,12 +368,39 @@ void GameScene::processCommand(std::string* command)
     }
     else if (*command == "stat")
     {
-        // display a list of currently enabled flags
+        scene->displayStat(scene);
     }
     else
     {
         //stringBuffer = "unknown command '" + stringBuffer + "'";
     }
+}
+
+void GameScene::displayStat(GameScene *scene)
+{
+    std::string statResult = "";
+
+    if (GameState::Config.GodMode)
+    {
+        statResult = statResult + "God" + "|";
+    }
+
+    if (GameState::Config.DisplayGrid)
+    {
+        statResult = statResult + "Grid" + "|";
+    }
+
+    if (GameState::Config.PlayMusic)
+    {
+        statResult = statResult + "Music" + "|";
+    }
+
+    if (GameState::Config.PlaySfx)
+    {
+        statResult = statResult + "Sfx" + "|";
+    }
+
+    scene->DevConsole->Log(statResult);
 }
 
 void GameScene::loadLevel(int levelIndex)

@@ -55,7 +55,6 @@ TODO:
 	
 	- Console:
 		+ Add the ability to run debug scripts.
-		+ Add stat mode to show all enabled flags
 		+ Handle backspace control character
 		+ Spawn new apple specific location
 		+ Spawn new apple random location
