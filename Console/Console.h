@@ -25,7 +25,7 @@ private:
 	sf::Text *currentLine;
 	std::shared_ptr<sf::Font> font;
 
-	float textSize = 20.f;
+	float textSize = 10.f;
 	float consoleBoxBottom = 0.f;
 
 	std::string stringBuffer = "";
