@@ -51,6 +51,7 @@ void Console::Draw(sf::RenderWindow *window)
 
 	for (auto cmd: previousCommands)
 	{
+#pragma message ("This TextUtils::CreateText method has a memory leak. Gradually allocates memory. Only allocate new Text instances for new strings on the console.")
 		window->draw(*TextUtils::CreateText(font, cmd, 0, textSize * cmdPosition++, (unsigned int)textSize, sf::Color::Yellow));
 	}
 

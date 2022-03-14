@@ -31,10 +31,14 @@ public:
 private:
 	void displayGrid(sf::RenderWindow* window);
 	void handleTargetHit();
+	void checkSingleAppleTargetHit(sf::Sprite* sprApple);
+	void handleSingleAppleTargetHit(sf::Sprite* sprApple);
 	void handleCollision();
 	static void processCommand(std::string* command);
 	void handleSpawn(std::string* command);
+	void spawnApple(int x, int y);
 	void loadLevel(int levelIndex);
+	sf::Sprite *createAppleSprite(int x, int y);
 	void displayStat(GameScene* scene);
 	
 	float snakeLength = 2.0f;
@@ -54,7 +58,7 @@ private:
 	std::vector<int> yGridPositions;
 	sf::RectangleShape *snakeHead;
 	std::vector<sf::RectangleShape> *snakeBlocks;
-	sf::Sprite* sprApple;
+	std::vector<sf::Sprite *> *sprApples;
 	
 	const float snakeBlockSize = 15.f;
 	const float sprAppleOffset = 5.f;

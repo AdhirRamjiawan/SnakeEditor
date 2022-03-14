@@ -54,6 +54,9 @@ TODO:
 		+ Add config file the game uses on startup.
 		+ Add check and warning message when assets aren't found in executable directory.
 		+ Keep line column size to approximately 80 chars. Write a perl script to pick this up
+		+ Fix #pragma message ("This TextUtils::CreateText method has a memory leak. Gradually allocates memory. Only allocate new Text instances for new strings on the console.")
+		  in Console.cpp
+		+ Move string file names of assets into utility class
 	
 	- Console:
 		+ Add the ability to run debug scripts.

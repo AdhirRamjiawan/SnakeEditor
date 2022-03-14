@@ -9,13 +9,16 @@ GameScene::GameScene(std::shared_ptr<sf::Font> font)
     currentLevel = LevelUtils::GetLevel("level1.dat");
 
     txtScore = TextUtils::CreateText(font, "Score: 0", 10.f, 10.f, 20, sf::Color::White);
-    sprApple = SpriteUtils::CreateSprite("apple.png", 100, 100, (10 * snakeBlockSize) - sprAppleOffset, (10 * snakeBlockSize) - sprAppleOffset, snakeBlockSize / 60, snakeBlockSize / 60);
     snakeHead = new sf::RectangleShape(sf::Vector2f(snakeBlockSize, snakeBlockSize));
     txtLevelName = TextUtils::CreateText(font, currentLevel.Name, 300.f, 10.f, 20, sf::Color::Red);
     txtLevelComplete = TextUtils::CreateText(font, "Level Complete!", 50.f, 200.f, 50, sf::Color::Green);
     txtQuitGame = TextUtils::CreateText(font, "Are you sure on quiting?", 70.f, 150.f, 30, sf::Color::Red);
 
     snakeBlocks = new std::vector<sf::RectangleShape>();
+    sprApples = new std::vector<sf::Sprite*>();
+
+    auto initialApple = this->createAppleSprite(10, 10);
+    sprApples->push_back(initialApple);
 
     this->snakeHead->setFillColor(sf::Color::Green);
 
@@ -40,7 +43,7 @@ GameScene::~GameScene()
 {
     delete snakeHead;
     delete snakeBlocks;
-    delete sprApple;
+    delete sprApples;
     delete gameState;
 }
 
@@ -206,9 +209,13 @@ void GameScene::Draw(sf::RenderWindow *window)
     }
 
     window->draw(*snakeHead);
-    window->draw(*sprApple);
     window->draw(*txtScore);
     window->draw(*txtLevelName);
+
+    for (auto apple : *this->sprApples)
+    {
+        window->draw(*apple);
+    }
 
     if (quitGamePromptEnabled)
     {
@@ -279,36 +286,50 @@ void GameScene::displayGrid(sf::RenderWindow* window)
 
 void GameScene::handleTargetHit()
 {
+
+    for (auto apple : *this->sprApples)
+    {
+        checkSingleAppleTargetHit(apple);
+    }
+}
+
+void GameScene::checkSingleAppleTargetHit(sf::Sprite *sprApple)
+{
+    if (this->snakeHead->getPosition().x == (sprApple->getPosition().x + sprAppleOffset) &&
+        this->snakeHead->getPosition().y == (sprApple->getPosition().y + sprAppleOffset))
+    {
+        handleSingleAppleTargetHit(sprApple);
+    }
+}
+
+void GameScene::handleSingleAppleTargetHit(sf::Sprite *sprApple)
+{
     int xGridPositionsLength = int(GameState::GameWidth / this->snakeBlockSize);
     int yGridPositionsLength = int(GameState::GameHeight / this->snakeBlockSize);
 
-    if (this->snakeHead->getPosition().x == (this->sprApple->getPosition().x + sprAppleOffset) &&
-        this->snakeHead->getPosition().y == (this->sprApple->getPosition().y + sprAppleOffset))
+    int randX = rand() % xGridPositionsLength;
+    int randY = rand() % yGridPositionsLength;
+
+    //cout << "randx " << randX << "randY " << randY << endl;
+
+    int targetX = xGridPositions[randX];
+    int targetY = yGridPositions[randY];
+
+    sprApple->setPosition(sf::Vector2f(targetX - sprAppleOffset, targetY - sprAppleOffset));
+
+    //cout << "target hit, next target position: x-" << targetX << ", y-" << targetY << endl;
+    snakeLength++;
+
+    SoundUtils::PlaySfx(&soundSfxEat);
+
+    this->DevConsole->Log("Target hit!");
+
+    gameState->PlayerScore += 1;
+    txtScore->setString("Score: " + std::to_string(gameState->PlayerScore));
+
+    if (gameState->PlayerScore >= currentLevel.WinCount)
     {
-        int randX = rand() % xGridPositionsLength;
-        int randY = rand() % yGridPositionsLength;
-
-        //cout << "randx " << randX << "randY " << randY << endl;
-
-        int targetX = xGridPositions[randX];
-        int targetY = yGridPositions[randY];
-
-        this->sprApple->setPosition(sf::Vector2f(targetX - sprAppleOffset, targetY - sprAppleOffset));
-
-        //cout << "target hit, next target position: x-" << targetX << ", y-" << targetY << endl;
-        snakeLength++;
-
-        SoundUtils::PlaySfx(&soundSfxEat);
-        
-        this->DevConsole->Log("Target hit!");
-
-        gameState->PlayerScore += 1;
-        txtScore->setString("Score: " + std::to_string(gameState->PlayerScore));
-
-        if (gameState->PlayerScore >= currentLevel.WinCount)
-        {
-            gameState->LevelComplete = true;
-        }
+        gameState->LevelComplete = true;
     }
 }
 
@@ -395,8 +416,13 @@ void GameScene::handleSpawn(std::string *command)
     auto xPos = atoi(spawnCommandParts.at(2).c_str());
     auto yPos = atoi(spawnCommandParts.at(3).c_str());
 
-    // move spawning of different objects into its own functions
+    this->spawnApple(xPos, yPos);
+}
 
+void GameScene::spawnApple(int x, int y)
+{
+    auto apple = this->createAppleSprite(x, y);
+    this->sprApples->push_back(apple);
 }
 
 void GameScene::displayStat(GameScene *scene)
@@ -431,4 +457,12 @@ void GameScene::loadLevel(int levelIndex)
     currentLevel = LevelUtils::GetLevel("level" + std::to_string(levelIndex) + ".dat");
     txtLevelName->setString(currentLevel.Name);
     Reset();
+}
+
+sf::Sprite *GameScene::createAppleSprite(int x, int y)
+{
+    auto finalXPos = (x * snakeBlockSize) - sprAppleOffset;
+    auto finalYPos = (y * snakeBlockSize) - sprAppleOffset;
+
+    return SpriteUtils::CreateSprite("apple.png", 100, 100, finalXPos, finalYPos, snakeBlockSize / 60, snakeBlockSize / 60);
 }
