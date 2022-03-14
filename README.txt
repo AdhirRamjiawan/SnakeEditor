@@ -15,6 +15,7 @@ TODO:
 		+ Fastest snake challenge
 		+ Spit 'em up challenge
 		+ Story mode ???
+		+ Tic-Tac-Toe challenge
 
 	- Scenes:
 		+ Leaderboard
@@ -57,11 +58,12 @@ TODO:
 		+ Fix #pragma message ("This TextUtils::CreateText method has a memory leak. Gradually allocates memory. Only allocate new Text instances for new strings on the console.")
 		  in Console.cpp
 		+ Move string file names of assets into utility class
+		+ Make use of a doc tool like doxygen (https://www.doxygen.nl/index.html) to map out types and objects in the project
+		+ Make leaderboard read from leaderboard file
 	
 	- Console:
 		+ Add the ability to run debug scripts.
 		+ Handle backspace control character
-		+ Spawn new apple specific location
 		+ Spawn new apple random location
 		+ Remove all apples
 		+ Spawn new entity x random/specific location
