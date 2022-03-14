@@ -33,6 +33,7 @@ private:
 	void handleTargetHit();
 	void handleCollision();
 	static void processCommand(std::string* command);
+	void handleSpawn(std::string* command);
 	void loadLevel(int levelIndex);
 	void displayStat(GameScene* scene);
 	

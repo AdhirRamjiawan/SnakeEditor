@@ -370,10 +370,33 @@ void GameScene::processCommand(std::string* command)
     {
         scene->displayStat(scene);
     }
+    else if (command->find("spawn") == 0)
+    {
+        scene->handleSpawn(command);
+    }
     else
     {
         //stringBuffer = "unknown command '" + stringBuffer + "'";
     }
+}
+
+void GameScene::handleSpawn(std::string *command)
+{
+    auto trimmedString = StringUtils::Trim(*command);
+    auto spawnCommandParts = StringUtils::Split(trimmedString, " ");
+
+    if (spawnCommandParts.size() < 4)
+    {
+        this->DevConsole->Log("usage: spawn [object] [posx] [posy]");
+        return;
+    }
+
+    auto object = spawnCommandParts.at(1);
+    auto xPos = atoi(spawnCommandParts.at(2).c_str());
+    auto yPos = atoi(spawnCommandParts.at(3).c_str());
+
+    // move spawning of different objects into its own functions
+
 }
 
 void GameScene::displayStat(GameScene *scene)

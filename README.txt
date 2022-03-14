@@ -45,6 +45,7 @@ TODO:
 		+ Add a tile map editor
 		+ pack all game assets into a binary data format
 		+ Attempt to use smart pointers 
+		+ Replace all variable declarations away from types to using auto keyword
 		+ Add shader effects: https://www.sfml-dev.org/tutorials/2.0/graphics-shader.php
 		+ Implement scene stacks for Scene Manager especially for GUI driven scenes like Main menu
 		+ Create an Entity pattern for things like the apple target. It should handle correct drawing and collisions etc.
@@ -52,6 +53,7 @@ TODO:
 		+ Record in game video
 		+ Add config file the game uses on startup.
 		+ Add check and warning message when assets aren't found in executable directory.
+		+ Keep line column size to approximately 80 chars. Write a perl script to pick this up
 	
 	- Console:
 		+ Add the ability to run debug scripts.
