@@ -60,6 +60,7 @@ TODO:
 		+ Make use of a doc tool like doxygen (https://www.doxygen.nl/index.html) to map out types and objects in the project
 		+ Make leaderboard read from leaderboard file
 		+ After quiting game to the main menu, stop the music
+		+ Set initial music volume to be at most 60%
 	
 	- Console:
 		+ Add the ability to run debug scripts.
