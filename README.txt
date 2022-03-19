@@ -27,7 +27,6 @@ TODO:
 		+ Add item to make snake go in turbo boost mode for a few seconds.
 		+ Add item to make snake go in turbo boost mode for a few seconds.
 		+ Add rocks that snake will collide with although these shouldn't make you get a game over but rather delay in hurt
-		
 		+ Add underground holes where snake can hide in. Enter tunnel and exit tunnel. In between enter and exit nothing can touch snake
 		+ snake must spit out apples too to fight enemies and bosses
 		+ Add boss levels
@@ -60,6 +59,7 @@ TODO:
 		+ Move string file names of assets into utility class
 		+ Make use of a doc tool like doxygen (https://www.doxygen.nl/index.html) to map out types and objects in the project
 		+ Make leaderboard read from leaderboard file
+		+ After quiting game to the main menu, stop the music
 	
 	- Console:
 		+ Add the ability to run debug scripts.
