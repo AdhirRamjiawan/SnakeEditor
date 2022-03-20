@@ -403,10 +403,19 @@ void GameScene::processCommand(std::string* command)
     {
         scene->handleSpawn(command);
     }
+    else if (*command == "banish")
+    {
+        scene->handleBanish();
+    }
     else
     {
         //stringBuffer = "unknown command '" + stringBuffer + "'";
     }
+}
+
+void GameScene::handleBanish()
+{
+    this->sprApples->clear();
 }
 
 void GameScene::handleSpawn(std::string *command)

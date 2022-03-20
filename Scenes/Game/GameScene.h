@@ -37,6 +37,7 @@ private:
 	int getRandY();
 	void handleCollision();
 	static void processCommand(std::string* command);
+	void handleBanish();
 	void handleSpawn(std::string* command);
 	void handleRandomSpawn();
 	void spawnApple(int x, int y);

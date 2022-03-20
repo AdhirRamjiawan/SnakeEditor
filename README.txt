@@ -65,7 +65,6 @@ TODO:
 	
 	- Console:
 		+ Add the ability to run debug scripts.
-		+ Remove all apples
 		+ Spawn new entity x random/specific location
 		+ Set snake speed
 		+ Exit Game scene
