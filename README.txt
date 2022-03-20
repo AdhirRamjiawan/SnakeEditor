@@ -65,8 +65,6 @@ TODO:
 	
 	- Console:
 		+ Add the ability to run debug scripts.
-		+ Handle backspace control character
-		+ Spawn new apple random location
 		+ Remove all apples
 		+ Spawn new entity x random/specific location
 		+ Set snake speed

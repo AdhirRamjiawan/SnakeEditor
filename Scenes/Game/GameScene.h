@@ -33,9 +33,12 @@ private:
 	void handleTargetHit();
 	void checkSingleAppleTargetHit(sf::Sprite* sprApple);
 	void handleSingleAppleTargetHit(sf::Sprite* sprApple);
+	int getRandX();
+	int getRandY();
 	void handleCollision();
 	static void processCommand(std::string* command);
 	void handleSpawn(std::string* command);
+	void handleRandomSpawn();
 	void spawnApple(int x, int y);
 	void loadLevel(int levelIndex);
 	sf::Sprite *createAppleSprite(int x, int y);

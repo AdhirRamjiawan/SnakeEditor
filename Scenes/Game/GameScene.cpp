@@ -304,16 +304,8 @@ void GameScene::checkSingleAppleTargetHit(sf::Sprite *sprApple)
 
 void GameScene::handleSingleAppleTargetHit(sf::Sprite *sprApple)
 {
-    int xGridPositionsLength = int(GameState::GameWidth / this->snakeBlockSize);
-    int yGridPositionsLength = int(GameState::GameHeight / this->snakeBlockSize);
-
-    int randX = rand() % xGridPositionsLength;
-    int randY = rand() % yGridPositionsLength;
-
-    //cout << "randx " << randX << "randY " << randY << endl;
-
-    int targetX = xGridPositions[randX];
-    int targetY = yGridPositions[randY];
+    int targetX = this->getRandX();
+    int targetY = this->getRandY();
 
     sprApple->setPosition(sf::Vector2f(targetX - sprAppleOffset, targetY - sprAppleOffset));
 
@@ -331,6 +323,22 @@ void GameScene::handleSingleAppleTargetHit(sf::Sprite *sprApple)
     {
         gameState->LevelComplete = true;
     }
+}
+
+int GameScene::getRandX()
+{
+    int xGridPositionsLength = int(GameState::GameWidth / this->snakeBlockSize);
+    int randX = rand() % xGridPositionsLength;
+
+    return xGridPositions[randX];
+}
+
+int GameScene::getRandY()
+{
+    int yGridPositionsLength = int(GameState::GameHeight / this->snakeBlockSize);
+    int randY = rand() % yGridPositionsLength;
+
+    return yGridPositions[randY];
 }
 
 void GameScene::handleCollision()
@@ -408,6 +416,12 @@ void GameScene::handleSpawn(std::string *command)
 
     if (spawnCommandParts.size() < 4)
     {
+        if (spawnCommandParts.size() == 2)
+        {
+            this->handleRandomSpawn();
+            return;
+        }
+
         this->DevConsole->Log("usage: spawn [object] [posx] [posy]");
         return;
     }
@@ -417,6 +431,14 @@ void GameScene::handleSpawn(std::string *command)
     auto yPos = atoi(spawnCommandParts.at(3).c_str());
 
     this->spawnApple(xPos, yPos);
+}
+
+void GameScene::handleRandomSpawn()
+{
+    auto xPos = this->getRandX();
+    auto yPos = this->getRandY();
+
+    this->spawnApple(xPos / this->snakeBlockSize, yPos / this->snakeBlockSize);
 }
 
 void GameScene::spawnApple(int x, int y)
